@@ -81,7 +81,7 @@
 				<div class="col-lg-4">
 					<div
 						class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-						<h3 class="m-0">Categories</h3>
+						<h3 class="m-0">Tin Mới</h3>
 						<a class="text-secondary font-weight-medium text-decoration-none"
 							href="">View All</a>
 					</div>
@@ -125,7 +125,7 @@
 		<div class="container">
 			<div
 				class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-				<h3 class="m-0">Featured</h3>
+				<h3 class="m-0">Thời Sự</h3>
 				<a class="text-secondary font-weight-medium text-decoration-none"
 					href="">View All</a>
 			</div>
@@ -211,47 +211,74 @@
 	</div>
 	<!-- Featured News Slider End -->
 
-
 	<!-- Category News Slider Start -->
 	<div class="container-fluid">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 py-3">
 					<div class="bg-light py-2 px-4 mb-3">
-						<h3 class="m-0">Business</h3>
+						<h3 class="m-0">Thế Giới</h3>
 					</div>
 					<div
 						class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-1.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-dulich.vnecdn.net/2024/11/05/img-4037-copy-2-1730604823-1730619064-1730801223.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=E0F2HLIrXh2EDL-OlYlwDw"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
+
+
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-2.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-dulich.vnecdn.net/2024/11/05/tai-xuong-jpeg-1730736058-8845-9394-4824-1730786501.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=y0lay0FfF4zYaxCWQX0ruQ"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
+
+
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-3.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-giadinh.vnecdn.net/2024/11/07/tran-thanh-trung173579-1730973-7868-6172-1730988388.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=CeednLt0pIT2riOhKkBRZA"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
@@ -259,40 +286,68 @@
 				</div>
 				<div class="col-lg-6 py-3">
 					<div class="bg-light py-2 px-4 mb-3">
-						<h3 class="m-0">Technology</h3>
+						<h3 class="m-0">Kinh Doanh</h3>
 					</div>
 					<div
 						class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-4.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-dulich.vnecdn.net/2024/11/05/img-4037-copy-2-1730604823-1730619064-1730801223.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=E0F2HLIrXh2EDL-OlYlwDw"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
+
+
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-5.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-dulich.vnecdn.net/2024/11/05/tai-xuong-jpeg-1730736058-8845-9394-4824-1730786501.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=y0lay0FfF4zYaxCWQX0ruQ"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
+
+
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-6.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-giadinh.vnecdn.net/2024/11/07/tran-thanh-trung173579-1730973-7868-6172-1730988388.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=CeednLt0pIT2riOhKkBRZA"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
@@ -310,40 +365,68 @@
 			<div class="row">
 				<div class="col-lg-6 py-3">
 					<div class="bg-light py-2 px-4 mb-3">
-						<h3 class="m-0">Entertainment</h3>
+						<h3 class="m-0">Giải trí</h3>
 					</div>
 					<div
 						class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-6.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-dulich.vnecdn.net/2024/11/05/img-4037-copy-2-1730604823-1730619064-1730801223.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=E0F2HLIrXh2EDL-OlYlwDw"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
+
+
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-5.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-dulich.vnecdn.net/2024/11/05/tai-xuong-jpeg-1730736058-8845-9394-4824-1730786501.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=y0lay0FfF4zYaxCWQX0ruQ"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
+
+
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-4.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-giadinh.vnecdn.net/2024/11/07/tran-thanh-trung173579-1730973-7868-6172-1730988388.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=CeednLt0pIT2riOhKkBRZA"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
@@ -351,42 +434,68 @@
 				</div>
 				<div class="col-lg-6 py-3">
 					<div class="bg-light py-2 px-4 mb-3">
-						<h3 class="m-0">Sports</h3>
+						<h3 class="m-0">Thể Thao</h3>
 					</div>
 					<div
 						class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-3.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-dulich.vnecdn.net/2024/11/05/img-4037-copy-2-1730604823-1730619064-1730801223.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=E0F2HLIrXh2EDL-OlYlwDw"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
+
+
 						<div class="position-relative">
-							<img class="img-fluid w-100" src="img/news-500x280-2.jpg"
-								style="object-fit: cover;">
-							<div class="overlay position-relative bg-light">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-dulich.vnecdn.net/2024/11/05/tai-xuong-jpeg-1730736058-8845-9394-4824-1730786501.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=y0lay0FfF4zYaxCWQX0ruQ"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
 								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
+
+
 						<div class="position-relative">
-							<img class="img-fluid w-100"
-								src="https://i1-suckhoe.vnecdn.net/2024/11/09/image001-1731115275-5933-1731115422.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=lydsQY1D42aLfeMcdwA1xA"
-								style="object-fit: cover;">
-							<div
-								class="overlay position-absolute top-0 bottom-0 start-0 end-0 bg-light p-3">
-								<div class="mb-1" style="font-size: 13px;">
+							<!-- Phần ảnh với kích thước cố định -->
+							<div style="width: 100%; height: 240px;">
+								<img class="img-fluid w-100 h-100"
+									src="https://i1-giadinh.vnecdn.net/2024/11/07/tran-thanh-trung173579-1730973-7868-6172-1730988388.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=CeednLt0pIT2riOhKkBRZA"
+									style="object-fit: cover;">
+							</div>
+
+							<!-- Phần danh mục và ngày tháng -->
+							<div class="p-3 bg-light">
+								<div class="mb-2" style="font-size: 13px;">
 									<a href="">Technology</a> <span class="px-1">/</span> <span>January
 										01, 2045</span>
 								</div>
+
+								<!-- Phần tiêu đề -->
 								<a class="h4 m-0" href="">Sanctus amet sed ipsum lorem</a>
 							</div>
 						</div>
@@ -408,41 +517,61 @@
 						<div class="col-12">
 							<div
 								class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-								<h3 class="m-0">Popular</h3>
+								<h3 class="m-0">Giáo dục</h3>
 								<a
 									class="text-secondary font-weight-medium text-decoration-none"
 									href="">View All</a>
 							</div>
 						</div>
-						<div class="col-lg-6">
-							<div class="position-relative mb-3">
-								<img class="img-fluid w-100" src="img/news-500x280-2.jpg"
-									style="object-fit: cover;">
-								<div class="overlay position-relative bg-light">
+						<div class="col-lg-6 mb-3">
+							<div class="position-relative" style="overflow: hidden;">
+								<!-- Phần ảnh với kích thước cố định -->
+								<div style="width: 100%; height: 300px;">
+									<img class="img-fluid w-100 h-100"
+										src="https://i1-giadinh.vnecdn.net/2024/11/07/tran-thanh-trung173579-1730973-7868-6172-1730988388.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=CeednLt0pIT2riOhKkBRZA"
+										style="object-fit: cover;">
+								</div>
+
+								<!-- Phần danh mục và ngày tháng -->
+								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 14px;">
 										<a href="">Technology</a> <span class="px-1">/</span> <span>January
 											01, 2045</span>
 									</div>
+
+									<!-- Phần tiêu đề -->
 									<a class="h4" href="">Est stet amet ipsum stet clita rebum
 										duo</a>
+
+									<!-- Phần mô tả -->
 									<p class="m-0">Rebum dolore duo et vero ipsum clita, est ea
 										sed duo diam ipsum, clita at justo, lorem amet vero eos sed
 										sit...</p>
 								</div>
 							</div>
-
 						</div>
-						<div class="col-lg-6">
-							<div class="position-relative mb-3">
-								<img class="img-fluid w-100" src="img/news-500x280-3.jpg"
-									style="object-fit: cover;">
-								<div class="overlay position-relative bg-light">
+
+						<div class="col-lg-6 mb-3">
+							<div class="position-relative" style="overflow: hidden;">
+								<!-- Phần ảnh với kích thước cố định -->
+								<div style="width: 100%; height: 300px;">
+									<img class="img-fluid w-100 h-100"
+										src="https://i1-giadinh.vnecdn.net/2024/11/07/tran-thanh-trung173579-1730973-7868-6172-1730988388.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=CeednLt0pIT2riOhKkBRZA"
+										style="object-fit: cover;">
+								</div>
+
+								<!-- Phần danh mục và ngày tháng -->
+								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 14px;">
 										<a href="">Technology</a> <span class="px-1">/</span> <span>January
 											01, 2045</span>
 									</div>
+
+									<!-- Phần tiêu đề -->
 									<a class="h4" href="">Est stet amet ipsum stet clita rebum
 										duo</a>
+
+									<!-- Phần mô tả -->
 									<p class="m-0">Rebum dolore duo et vero ipsum clita, est ea
 										sed duo diam ipsum, clita at justo, lorem amet vero eos sed
 										sit...</p>

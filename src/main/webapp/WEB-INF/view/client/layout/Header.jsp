@@ -134,8 +134,8 @@
 					class="nav-item nav-link">Kinh doanh</a> <a href="category.html"
 					class="nav-item nav-link">Giải trí</a> <a href="category.html"
 					class="nav-item nav-link">Thể thao</a> <a href="single.html"
-					class="nav-item nav-link">Theo dõi</a> <a href="single.html"
-					class="nav-item nav-link">Dành cho bạn</a>
+					class="nav-item nav-link">Giáo dục</a> <a href="single.html"
+					class="nav-item nav-link">Theo dõi</a>
 			</div>
 		</div>
 	</nav>
