@@ -17,26 +17,31 @@ import vn.vantu.news.domain.Product;
 import vn.vantu.news.domain.User;
 import vn.vantu.news.domain.dto.RegisterDTO;
 import vn.vantu.news.service.ProductService;
+import vn.vantu.news.service.UseJsoupGetNews;
 import vn.vantu.news.service.UserService;
 
 @Controller
 public class HomePageController {
 
 	private final ProductService productservice;
-	private UserService userservice;
+	private final UserService userservice;
 	private final PasswordEncoder passwordEncoder;
-
-	public HomePageController(ProductService productservice, UserService userservice, PasswordEncoder passwordEncoder) {
+	private final UseJsoupGetNews useJsoupGetNews;
+	
+	public HomePageController(ProductService productservice, UserService userservice, PasswordEncoder passwordEncoder, UseJsoupGetNews useJsoupGetNews) {
 		this.productservice = productservice;
 		this.userservice = userservice;
 		this.passwordEncoder = passwordEncoder;
+		this.useJsoupGetNews = useJsoupGetNews;
 	}
 
 	@GetMapping("/")
 	private String getHomePage(Model model, HttpServletRequest request) {
 		List<Product> products = productservice.getAllProduct();
 		model.addAttribute("products", products);
-
+		
+		useJsoupGetNews.LoadNewsFromRSS();
+		
 		return "client/homepage/HomePage";
 	}
 

@@ -6,15 +6,15 @@ import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 //	@SpringBootApplication(exclude = org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class)
-public class LaptopshopApplication {
+public class Application {
 
 	public static void main(String[] args) {
-
-		ApplicationContext getBeans = SpringApplication.run(LaptopshopApplication.class, args);
-		for(String s: getBeans.getBeanDefinitionNames())
-		{
-			System.out.println(s);
-		}
+		SpringApplication.run(Application.class, args);
+//		ApplicationContext getBeans = SpringApplication.run(Application.class, args);
+//		for(String s: getBeans.getBeanDefinitionNames())
+//		{
+//			System.out.println(s);
+//		}
 	}
 
 }

@@ -1,6 +1,7 @@
 package vn.vantu.news.domain;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,18 +55,22 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Order> orders;
 
+	// 1 user có thể lưu được nhiều tin, tham chiếu tới UserNews
+	@OneToMany(mappedBy = "user")
+	private Set<UserNews> userNews;
+	
 	public User() {
 
 	}
 
-	public User(long id, String email, String password, String fullName, String address, String phone) {
-		this.id = id;
-		this.email = email;
-		this.password = password;
-		this.fullName = fullName;
-		this.address = address;
-		this.phone = phone;
-	}
+//	public User(long id, String email, String password, String fullName, String address, String phone) {
+//		this.id = id;
+//		this.email = email;
+//		this.password = password;
+//		this.fullName = fullName;
+//		this.address = address;
+//		this.phone = phone;
+//	}
 
 	public Role getRole() {
 		return role;
