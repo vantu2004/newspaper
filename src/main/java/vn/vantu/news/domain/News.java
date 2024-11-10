@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -17,22 +19,36 @@ import jakarta.persistence.Table;
 public class News {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private long id;
 
 	private String title;
-	private String category;
 	
+	// nhiều news thuộc 1 category, giữ khóa ngoại -> owner
+	@ManyToOne
+	// nếu ko có annotation này thì bên mysql mặc định tự tạo 1 bảng trung gian, có
+	// annotation cho mysql biết 2 table liên kết theo category_id
+	// category là tên tự đặt, thực tế nó liên kết tới thuộc tính đc đặt làm id (@Id)
+	// bên category
+	@JoinColumn(name = "category_id")
+	private Category category;
+
 	private LocalDate pubdate;
 	private LocalTime pubtime;
-	
+
 	private String link;
 	private String image;
 
-	//	dùng mediumtext có thể lưu chuỗi nặng 4mb
+	// dùng mediumtext có thể lưu chuỗi nặng 4mb
 	@Column(columnDefinition = "MEDIUMTEXT")
 	private String summary;
 
-	//	1 tin có thể được lưu bởi nhiều user, tham chiếu tới UserNews
+	@Column(columnDefinition = "MEDIUMTEXT")
+	private String content;
+
+	@Column(columnDefinition = "MEDIUMTEXT")
+	private String author;
+
+	// 1 tin có thể được lưu bởi nhiều user, tham chiếu tới UserNews
 	@OneToMany(mappedBy = "news")
 	private Set<UserNews> userNews;
 
@@ -56,12 +72,20 @@ public class News {
 		this.title = title;
 	}
 
-	public String getCategory() {
+	public Category getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public Set<UserNews> getUserNews() {
+		return userNews;
+	}
+
+	public void setUserNews(Set<UserNews> userNews) {
+		this.userNews = userNews;
 	}
 
 	public String getLink() {
@@ -104,14 +128,27 @@ public class News {
 		this.pubtime = pubtime;
 	}
 
+	public LocalDate getPubdate() {
+		return pubdate;
+	}
+
 	public void setPubdate(LocalDate pubdate) {
 		this.pubdate = pubdate;
 	}
 
-	@Override
-	public String toString() {
-		return "News [id=" + id + ", title=" + title + ", category=" + category + ", pubdate=" + pubdate + ", pubtime="
-				+ pubtime + ", link=" + link + ", image=" + image + ", summary=" + summary + "]";
+	public String getContent() {
+		return content;
 	}
 
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
 }

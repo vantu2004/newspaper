@@ -1,6 +1,5 @@
 package vn.vantu.news.domain;
 
-import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Entity;
@@ -53,11 +52,15 @@ public class User {
 
 	// 1 user có nhiều order, ko giữ khóa ngoại -> mapped by order
 	@OneToMany(mappedBy = "user")
-	List<Order> orders;
+	Set<Order> orders;
 
 	// 1 user có thể lưu được nhiều tin, tham chiếu tới UserNews
 	@OneToMany(mappedBy = "user")
 	private Set<UserNews> userNews;
+	
+	// 1 user có thể xem nhiều news thuộc nhiều category, tham chiếu tới UserCategory
+	@OneToMany(mappedBy = "user")
+	private Set<UserCategory> UserCategory;
 	
 	public User() {
 
@@ -80,12 +83,28 @@ public class User {
 		this.role = role;
 	}
 
-	public List<Order> getOrders() {
+	public Set<Order> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(List<Order> orders) {
+	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
+	}
+
+	public Set<UserNews> getUserNews() {
+		return userNews;
+	}
+
+	public void setUserNews(Set<UserNews> userNews) {
+		this.userNews = userNews;
+	}
+
+	public Set<UserCategory> getUserCategory() {
+		return UserCategory;
+	}
+
+	public void setUserCategory(Set<UserCategory> userCategory) {
+		UserCategory = userCategory;
 	}
 
 	public long getId() {
@@ -143,12 +162,4 @@ public class User {
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
 	}
-
-//	@Override
-//	public String toString() {
-//		return "User [id=" + id + ", email=" + email + ", password=" + password + ", fullName=" + fullName
-//				+ ", address=" + address + ", phone=" + phone + ", avatar=" + avatar + ", role=" + role.getName()
-//				+ ", orders=" + orders + "]";
-//	}
-
 }

@@ -1,6 +1,6 @@
 package vn.vantu.news.domain;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,9 +21,17 @@ public class Role {
     //	1 role có nhiều user, ko nắm khóa ngoại -> mapped by user
     //	mối liên kết giữa user và role là "role"
     @OneToMany(mappedBy = "role")
-    List<User> users;
+    Set<User> users;
     
-    public long getId() {
+    public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+	public long getId() {
         return id;
     }
 
