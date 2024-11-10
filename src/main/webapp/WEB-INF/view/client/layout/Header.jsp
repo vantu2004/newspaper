@@ -92,7 +92,7 @@
 							</div>
 						</div>
 
-						<a class="dropdown-item" href="#">Quản lý tài khoản</a>
+						<a class="dropdown-item" href="/client/user/update/${sessionScope.id}">Quản lý tài khoản</a>
 						<div>
 							<form method="post" action="/logout">
 								<input type="hidden" name="${_csrf.parameterName}"

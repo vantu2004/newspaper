@@ -22,13 +22,13 @@ import vn.vantu.news.service.UserService;
 
 @Controller
 public class HomePageController {
-
 	private final ProductService productservice;
 	private final UserService userservice;
 	private final PasswordEncoder passwordEncoder;
 	private final UseJsoupGetNews useJsoupGetNews;
-	
-	public HomePageController(ProductService productservice, UserService userservice, PasswordEncoder passwordEncoder, UseJsoupGetNews useJsoupGetNews) {
+
+	public HomePageController(ProductService productservice, UserService userservice, PasswordEncoder passwordEncoder,
+			UseJsoupGetNews useJsoupGetNews) {
 		this.productservice = productservice;
 		this.userservice = userservice;
 		this.passwordEncoder = passwordEncoder;
@@ -39,9 +39,9 @@ public class HomePageController {
 	private String getHomePage(Model model, HttpServletRequest request) {
 		List<Product> products = productservice.getAllProduct();
 		model.addAttribute("products", products);
-		
-		useJsoupGetNews.LoadNewsFromRSS();
-		
+
+		//useJsoupGetNews.LoadNewsFromRSS();
+
 		return "client/homepage/HomePage";
 	}
 
@@ -87,7 +87,7 @@ public class HomePageController {
 
 		return "client/auth/Login";
 	}
-	
+
 	@GetMapping("/access-deny")
 	private String getDenyPage(Model model) {
 
