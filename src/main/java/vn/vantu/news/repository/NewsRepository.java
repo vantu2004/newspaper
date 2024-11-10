@@ -1,5 +1,7 @@
 package vn.vantu.news.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,4 +16,6 @@ public interface NewsRepository extends JpaRepository<News, Long>{
 	
 	// Lấy bản ghi mới nhất dựa trên cột id
     News findTopByOrderByIdDesc();
+    
+    List<News> findByCategoryIdOrderByPubdateDesc(long categoryId);
 }

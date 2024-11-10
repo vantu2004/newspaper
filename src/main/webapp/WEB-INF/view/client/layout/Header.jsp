@@ -57,12 +57,26 @@
 					<a data-toggle="dropdown" class="dropdown-toggle-icon"><i
 						class="fas fa-bell"></i> <i class="fas fa-angle-down"></i></a>
 
-					<div class="dropdown-menu dropdown-menu-right">
-						<a class="dropdown-item" href="#">Action</a> <a
-							class="dropdown-item" href="#">Another action</a> <a
-							class="dropdown-item" href="#">Something else here</a> <a
-							class="dropdown-item" href="#">Separated link</a>
+					<div class="dropdown-menu dropdown-menu-right"
+						style="width: 450px; padding: 20px; max-height: 400px; overflow-y: auto;">
+						<c:forEach var="news" items="${listNews.tinMoi}" begin="0" end="9">
+							<div
+								class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
+								<div class="d-flex flex-column" style="flex: 3;">
+									<a class="m-0" style="color: black;">${news.title}</a> <a
+										href="">${listNews.getCategoryName().get(Long.valueOf(news.category.getId()))}</a>
+									<span class="px-1"></span>
+									<p>${news.pubdate}</p>
+								</div>
+								<div class="position-relative overflow-hidden"
+									style="flex: 1; margin-left: 10px;">
+									<img class="img-fluid w-100 h-100" src="${news.image}"
+										style="object-fit: cover; height: 300px;">
+								</div>
+							</div>
+						</c:forEach>
 					</div>
+
 				</div>
 				<!-- End list -->
 
@@ -73,7 +87,7 @@
 
 					<div class="dropdown-menu dropdown-menu-right"
 						style="width: 250px; padding: 20px;">
-						
+
 						<div class="text-center">
 							<c:choose>
 								<c:when test="${not empty sessionScope.avatar}">
@@ -92,7 +106,9 @@
 							</div>
 						</div>
 
-						<a class="dropdown-item" href="/client/user/update/${sessionScope.id}">Quản lý tài khoản</a>
+						<a class="dropdown-item"
+							href="/client/user/update/${sessionScope.id}">Quản lý tài
+							khoản</a>
 						<div>
 							<form method="post" action="/logout">
 								<input type="hidden" name="${_csrf.parameterName}"

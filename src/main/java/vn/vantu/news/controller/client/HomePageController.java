@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import vn.vantu.news.domain.ListNews;
 import vn.vantu.news.domain.Product;
 import vn.vantu.news.domain.User;
 import vn.vantu.news.domain.dto.RegisterDTO;
+import vn.vantu.news.service.NewsService;
 import vn.vantu.news.service.ProductService;
 import vn.vantu.news.service.UseJsoupGetNews;
 import vn.vantu.news.service.UserService;
@@ -26,13 +28,16 @@ public class HomePageController {
 	private final UserService userservice;
 	private final PasswordEncoder passwordEncoder;
 	private final UseJsoupGetNews useJsoupGetNews;
+	private final NewsService newsService;
+	private ListNews listNews;
 
 	public HomePageController(ProductService productservice, UserService userservice, PasswordEncoder passwordEncoder,
-			UseJsoupGetNews useJsoupGetNews) {
+			UseJsoupGetNews useJsoupGetNews, NewsService newsService) {
 		this.productservice = productservice;
 		this.userservice = userservice;
 		this.passwordEncoder = passwordEncoder;
 		this.useJsoupGetNews = useJsoupGetNews;
+		this.newsService = newsService;
 	}
 
 	@GetMapping("/")
@@ -41,10 +46,21 @@ public class HomePageController {
 		model.addAttribute("products", products);
 
 		//useJsoupGetNews.LoadNewsFromRSS();
-
+		
+		listNews = newsService.getAllNews();
+//		show();
+		
+		model.addAttribute("listNews", listNews);
+		
 		return "client/homepage/HomePage";
 	}
 
+//	private void show() {
+//		for (var item: listNews.getThoiSu()) {
+//			System.out.println(item.getImage());
+//		}
+//	}
+	
 	@GetMapping("/register")
 	private String getRegisterPage(Model model, @ModelAttribute("registerUser") RegisterDTO registerDTO) {
 
