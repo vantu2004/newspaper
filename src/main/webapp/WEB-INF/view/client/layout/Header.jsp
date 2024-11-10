@@ -46,8 +46,7 @@
 						class="dropdown-item" href="#">Khoa học</a> <a
 						class="dropdown-item" href="#">Số hóa</a> <a class="dropdown-item"
 						href="#">Xe</a> <a class="dropdown-item" href="#">Ý kiến</a> <a
-						class="dropdown-item" href="#">Tâm sự</a> <a class="dropdown-item"
-						href="#">Cười</a>
+						class="dropdown-item" href="#">Tâm sự</a>
 				</div>
 			</div>
 

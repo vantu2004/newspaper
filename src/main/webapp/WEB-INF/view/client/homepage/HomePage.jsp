@@ -78,41 +78,60 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="col-lg-4">
 					<div
-						class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-						<h3 class="m-0">Tin Mới</h3>
+						class="d-flex align-items-center justify-content-between bg-light py-2 px-3 mb-3">
+						<h3 class="m-0">Tin mới</h3>
 						<a class="text-secondary font-weight-medium text-decoration-none"
 							href="">View All</a>
 					</div>
-					<div class="position-relative overflow-hidden mb-3"
-						style="height: 80px;">
-						<img class="img-fluid w-100 h-100" src="img/cat-500x80-1.jpg"
-							style="object-fit: cover;"> <a href=""
-							class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-							Business </a>
+
+					<div
+						class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
+						<div class="d-flex flex-column" style="flex: 3;">
+							<a class="m-0" style="color: black;">Nghi ngờ bạn gái lén phá
+								thai</a> <a href="">Technology</a> <span class="px-1"></span>
+							<p>January 01, 2045</p>
+						</div>
+						<div class="position-relative overflow-hidden"
+							style="flex: 1; margin-left: 10px;">
+							<img class="img-fluid w-100 h-100"
+								src="https://i1-vnexpress.vnecdn.net/2024/11/07/MGES51-1730948905-1681-1730949052.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=pDfqh67jLxs7odS8zh_LjQ"
+								style="object-fit: cover; height: 300px;">
+						</div>
 					</div>
-					<div class="position-relative overflow-hidden mb-3"
-						style="height: 80px;">
-						<img class="img-fluid w-100 h-100" src="img/cat-500x80-2.jpg"
-							style="object-fit: cover;"> <a href=""
-							class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-							Technology </a>
+
+					<div
+						class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
+						<div class="d-flex flex-column" style="flex: 3;">
+							<a class="m-0" style="color: black;">Nghi ngờ bạn gái lén phá
+								thai</a> <a href="">Technology</a> <span class="px-1"></span>
+							<p>January 01, 2045</p>
+						</div>
+						<div class="position-relative overflow-hidden"
+							style="flex: 1; margin-left: 10px;">
+							<img class="img-fluid w-100 h-100"
+								src="https://i1-vnexpress.vnecdn.net/2024/11/07/MGES51-1730948905-1681-1730949052.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=pDfqh67jLxs7odS8zh_LjQ"
+								style="object-fit: cover; height: 300px;">
+						</div>
 					</div>
-					<div class="position-relative overflow-hidden mb-3"
-						style="height: 80px;">
-						<img class="img-fluid w-100 h-100" src="img/cat-500x80-3.jpg"
-							style="object-fit: cover;"> <a href=""
-							class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-							Entertainment </a>
+
+					<div
+						class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
+						<div class="d-flex flex-column" style="flex: 3;">
+							<a class="m-0" style="color: black;">Nghi ngờ bạn gái lén phá
+								thai</a> <a href="">Technology</a> <span class="px-1"></span>
+							<p>January 01, 2045</p>
+						</div>
+						<div class="position-relative overflow-hidden"
+							style="flex: 1; margin-left: 10px;">
+							<img class="img-fluid w-100 h-100"
+								src="https://i1-vnexpress.vnecdn.net/2024/11/07/MGES51-1730948905-1681-1730949052.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=pDfqh67jLxs7odS8zh_LjQ"
+								style="object-fit: cover; height: 300px;">
+						</div>
 					</div>
-					<div class="position-relative overflow-hidden"
-						style="height: 80px;">
-						<img class="img-fluid w-100 h-100" src="img/cat-500x80-4.jpg"
-							style="object-fit: cover;"> <a href=""
-							class="overlay align-items-center justify-content-center h4 m-0 text-white text-decoration-none">
-							Sports </a>
-					</div>
+
 				</div>
 			</div>
 		</div>

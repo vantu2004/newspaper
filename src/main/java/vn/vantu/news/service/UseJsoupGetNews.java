@@ -18,6 +18,7 @@ import vn.vantu.news.domain.News;
 public class UseJsoupGetNews {
 
 	int count = 0;
+	int count1 = 0;
 	private final NewsService newsService;
 
 	public UseJsoupGetNews(NewsService newsService) {
@@ -26,7 +27,7 @@ public class UseJsoupGetNews {
 
 	public void LoadNewsFromRSS() {
 		long topIndexNews = this.newsService.getTopIndexNews();
-		
+
 		RSSLink(topIndexNews);
 
 		System.out.println("oooooooooo000000000 " + topIndexNews + " 000000000oooooooooo");
@@ -49,12 +50,69 @@ public class UseJsoupGetNews {
 		GetInfoFromRSS("https://vnexpress.net/rss/oto-xe-may.rss", "xe", topIndexNews);
 		GetInfoFromRSS("https://vnexpress.net/rss/y-kien.rss", "y_kien", topIndexNews);
 		GetInfoFromRSS("https://vnexpress.net/rss/tam-su.rss", "tam_su", topIndexNews);
-		GetInfoFromRSS("https://vnexpress.net/rss/cuoi.rss", "cuoi", topIndexNews);
-		
+
 		System.out.println("oooooooooo000000000 " + count + " 000000000oooooooooo");
 		count = 0;
+		System.out.println("oooooooooo000000000 COUNT 1 = " + count1 + " 000000000oooooooooo");
+		count1 = 0;
 	}
-	
+
+	private boolean crawlDetailNews(String url) {
+		System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+
+		String para = "";
+		String author = "";
+
+		try {
+			Document doc = Jsoup.connect(url).get();
+
+			Element section = doc.select("html > body > section.section.page-detail.top-detail").first();
+			if (section == null) {
+				return false;
+			}
+
+			Element sidebar = section.select("div.sidebar-1").first();
+			if (sidebar == null) {
+				return false;
+			}
+
+			Element description = sidebar.select("p.description").first();
+			if (description == null) {
+				return false;
+			}
+
+			para += description.text() + "\n";
+
+			Elements paragraphs = sidebar.select("p.Normal");
+			if (paragraphs.isEmpty()) {
+				return false;
+			}
+
+			for (int i = 0; i < paragraphs.size(); i++) {
+				Element paragraph = paragraphs.get(i);
+
+				if (i == paragraphs.size() - 1) {
+					author = paragraph.text();
+					break;
+				}
+
+				para += paragraph.text() + "\n";
+			}
+
+			if (para.length() >= 500) {
+				System.out.println("para: " + para + "\n" + "author: " + author);
+				count1++;
+				System.out.println(
+						"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+				return true;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
 	private void GetInfoFromRSS(String url, String category, long topIndexNews) {
 //		System.out.println("oooooooooo000000000 " + category + " 000000000oooooooooo");
 
@@ -63,35 +121,32 @@ public class UseJsoupGetNews {
 
 			Elements items = doc.select("item");
 			long numberOfItems = items.size();
-			
-			// Nếu lượng news trong db <= 500 thì mặc định cào hết, nhưng nếu trên rồi thì chỉ cần cào mỗi link 10 bài
+
+			// Nếu lượng news trong db <= 500 thì mặc định cào hết, nhưng nếu trên rồi thì
+			// chỉ cần cào mỗi link 10 bài
 			if (topIndexNews <= 500) {
 				topIndexNews = numberOfItems;
+			} else {
+				topIndexNews = 5;
 			}
-			else {
-				topIndexNews = 10;
-			}
-			
+
 			long countLoop = 0;
 			for (Element item : items) {
-				
-				// Giới hạn số lần cào
+
+				// Giới hạn số lần crawl
 				if (countLoop >= topIndexNews) {
 					break;
 				}
 				countLoop++;
-				
-				// Kiểm tra xem thẻ title có tồn tại không
+
 				String title = item.select("title").text();
 				if (title.isEmpty())
-					continue; // Nếu title không tồn tại, bỏ qua item này và chuyển sang item tiếp theo
+					continue; 
 
-				// Kiểm tra xem thẻ pubDate có tồn tại không
 				String pubDate = item.select("pubDate").text();
 				if (pubDate.isEmpty())
 					continue;
 
-				// Kiểm tra xem thẻ link có tồn tại không
 				String link = item.select("link").text();
 				if (link.isEmpty())
 					continue;
@@ -118,9 +173,6 @@ public class UseJsoupGetNews {
 				// Lấy phần tóm tắt nội dung bài viết
 				String summary = descriptionDoc.text().replaceAll(".*?</a>", "").trim();
 
-				// Đếm số bài báo
-				count++;
-
 //				// In kết quả
 //				System.out.println("Title: " + title);
 //				System.out.println("Publication Date: " + formattedDate);
@@ -130,16 +182,20 @@ public class UseJsoupGetNews {
 //				System.out.println("Summary: " + summary);
 //				System.out.println("---------------------------------------------------");
 
-				News news = new News();
-				news.setTitle(title);
-				news.setCategory(category);
-				news.setPubdate(formattedDate);
-				news.setPubtime(formattedTime);
-				news.setLink(link);
-				news.setImage(imgSrc);
-				news.setSummary(summary);
+				if (crawlDetailNews(link)) {
+					News news = new News();
+					news.setTitle(title);
+					news.setCategory(category);
+					news.setPubdate(formattedDate);
+					news.setPubtime(formattedTime);
+					news.setLink(link);
+					news.setImage(imgSrc);
+					news.setSummary(summary);
 
-				handleSaveNews(news);
+					handleSaveNews(news);
+
+					count++;
+				}
 			}
 		} catch (IOException e) {
 			System.out.println("Error fetching the RSS feed: " + e.getMessage());
