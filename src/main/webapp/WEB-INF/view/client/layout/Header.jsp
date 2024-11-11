@@ -5,7 +5,7 @@
 	<div class="row align-items-center py-2 px-lg-5">
 		<!-- Logo Section (5/12) -->
 		<div class="col-lg-5">
-			<a href="#" class="navbar-brand d-none d-lg-block">
+			<a href="/" class="navbar-brand d-none d-lg-block">
 				<h1 class="m-0 display-5 text-uppercase">
 					<span class="text-primary">News</span>Room
 				</h1>
@@ -32,21 +32,22 @@
 					class="fas fa-list-ul"></i> <i class="fas fa-angle-down"></i></a>
 
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="#">Thế giới</a> <a
-						class="dropdown-item" href="#">Thời sự</a> <a
-						class="dropdown-item" href="#">Kinh doanh</a> <a
-						class="dropdown-item" href="#">Startup</a> <a
-						class="dropdown-item" href="#">Giải trí</a> <a
-						class="dropdown-item" href="#">Thể thao</a> <a
-						class="dropdown-item" href="#">Pháp luật</a> <a
-						class="dropdown-item" href="#">Giáo dục</a> <a
-						class="dropdown-item" href="#">Sức khỏe</a> <a
-						class="dropdown-item" href="#">Đời sống</a> <a
-						class="dropdown-item" href="#">Du lịch</a> <a
-						class="dropdown-item" href="#">Khoa học</a> <a
-						class="dropdown-item" href="#">Số hóa</a> <a class="dropdown-item"
-						href="#">Xe</a> <a class="dropdown-item" href="#">Ý kiến</a> <a
-						class="dropdown-item" href="#">Tâm sự</a>
+					<a class="dropdown-item" href="/listNews/1">Thế giới</a> <a
+						class="dropdown-item" href="/listNews/2">Thời sự</a> <a
+						class="dropdown-item" href="/listNews/3">Kinh doanh</a> <a
+						class="dropdown-item" href="/listNews/4">Startup</a> <a
+						class="dropdown-item" href="/listNews/5">Giải trí</a> <a
+						class="dropdown-item" href="/listNews/6">Thể thao</a> <a
+						class="dropdown-item" href="/listNews/7">Pháp luật</a> <a
+						class="dropdown-item" href="/listNews/8">Giáo dục</a> <a
+						class="dropdown-item" href="/listNews/9">Sức khỏe</a> <a
+						class="dropdown-item" href="/listNews/10">Đời sống</a> <a
+						class="dropdown-item" href="/listNews/11">Du lịch</a> <a
+						class="dropdown-item" href="/listNews/12">Khoa học</a> <a
+						class="dropdown-item" href="/listNews/13">Số hóa</a> 
+						<a class="dropdown-item" href="/listNews/14">Xe</a> 
+						<a class="dropdown-item" href="/listNews/15">Ý kiến</a> <a
+						class="dropdown-item" href="/listNews/16">Tâm sự</a>
 				</div>
 			</div>
 
@@ -142,15 +143,15 @@
 			class="collapse navbar-collapse justify-content-between px-0 px-lg-3"
 			id="navbarCollapse">
 			<div class="navbar-nav mr-auto py-0">
-				<a href="index.html" class="nav-item nav-link active"><i
-					class="fas fa-home"></i></a> <a href="category.html"
-					class="nav-item nav-link">Thời sự</a> <a href="single.html"
-					class="nav-item nav-link">Thế giới</a> <a href="index.html"
-					class="nav-item nav-link">Kinh doanh</a> <a href="category.html"
-					class="nav-item nav-link">Giải trí</a> <a href="category.html"
-					class="nav-item nav-link">Thể thao</a> <a href="single.html"
-					class="nav-item nav-link">Giáo dục</a> <a href="single.html"
-					class="nav-item nav-link">Theo dõi</a>
+				<a href="/" class="nav-item nav-link active"><i
+					class="fas fa-home"></i></a> 
+					<a href="/listNews/2" class="nav-item nav-link">Thời sự</a> 
+					<a href="/listNews/1" class="nav-item nav-link">Thế giới</a> 
+					<a href="/listNews/3" class="nav-item nav-link">Kinh doanh</a> 
+					<a href="/listNews/6" class="nav-item nav-link">Giải trí</a> 
+					<a href="/listNews/5" class="nav-item nav-link">Thể thao</a> 
+					<a href="/listNews/8" class="nav-item nav-link">Giáo dục</a> 
+					<a href="/" class="nav-item nav-link">Theo dõi</a>
 			</div>
 		</div>
 	</nav>

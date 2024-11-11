@@ -87,7 +87,6 @@
 								<img class="img-fluid w-100 h-100" src="${news.image}"
 									style="object-fit: cover; height: 300px;">
 							</div>
-
 						</div>
 					</c:forEach>
 				</div>

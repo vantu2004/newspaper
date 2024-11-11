@@ -45,22 +45,15 @@ public class HomePageController {
 		List<Product> products = productservice.getAllProduct();
 		model.addAttribute("products", products);
 
-		//useJsoupGetNews.LoadNewsFromRSS();
+		useJsoupGetNews.LoadNewsFromRSS();
 		
 		listNews = newsService.getAllNews();
-//		show();
-		
+
 		model.addAttribute("listNews", listNews);
 		
 		return "client/homepage/HomePage";
 	}
 
-//	private void show() {
-//		for (var item: listNews.getThoiSu()) {
-//			System.out.println(item.getImage());
-//		}
-//	}
-	
 	@GetMapping("/register")
 	private String getRegisterPage(Model model, @ModelAttribute("registerUser") RegisterDTO registerDTO) {
 

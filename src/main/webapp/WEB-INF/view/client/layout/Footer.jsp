@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Footer Start -->
-<div class="container-fluid bg-light pt-5 px-sm-3 px-md-5">
+<div class="container-fluid bg-light pt-3 px-sm-3 px-md-5">
 	<div class="row justify-content-center">
 		<!-- Thêm class justify-content-center để căn giữa -->
 		<div class="col-lg-6 col-md-6 text-center">

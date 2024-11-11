@@ -32,6 +32,11 @@ public class NewsService {
 		return news == null ? 0 : news.getId();
 	}
 
+	public List<News> getOneListNews(long id)
+	{
+		return this.newsRepository.findByCategoryIdOrderByPubdateDesc(id);
+	}
+	
 	public ListNews getAllNews() {
 		ListNews listNews = new ListNews();
 

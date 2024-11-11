@@ -39,11 +39,11 @@
 </script>
 </head>
 
-<body class="sb-nav-fixed">
+<body>
 
-	<div id="layoutSidenav_content" class="container mt-5">
+	<div id="layoutSidenav_content">
 		<main>
-			<div class="container-fluid px-4">
+			<div class="px-4 container mt-5 mb-5">
 				<!-- 				<h1 class="mt-4">Manage users</h1>
 				<ol class="breadcrumb mb-4">
 					<li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
@@ -98,7 +98,7 @@
 								</div>
 							</c:if>
 
-							<div class="d-flex justify-content-end mt-3">
+							<div class="d-flex justify-content-end mt-3 mb-5">
 								<button type="submit" class="btn btn-primary">Update</button>
 							</div>
 						</form:form>
