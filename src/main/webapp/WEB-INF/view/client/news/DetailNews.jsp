@@ -47,10 +47,26 @@
 					<!-- News Detail Start -->
 					<div class="position-relative mb-3">
 						<div class="overlay position-relative bg-light">
-							<div class="mb-3">
-								<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span class="px-1">/</span>
-								<span>${news.pubdate}</span>
+							<div
+								class="mb-3 d-flex justify-content-between align-items-center"
+								style="width: 100%">
+								<div>
+									<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+									<span class="px-1">/</span> <span>${news.pubdate}</span>
+								</div>
+								<c:if test="${not empty pageContext.request.userPrincipal}">
+									<form action="/follow-news/${news.id}" method="post"
+										class="d-flex align-items-center justify-content-end">
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+										<button type="submit"
+											class="mx-auto btn border border-secondary px-3 text-primary">
+											<i class="fas fa-plus-square"></i> Lưu tin
+										</button>
+									</form>
+								</c:if>
 							</div>
+
 							<div>
 								<h3 class="mb-3">${news.title}</h3>
 								<p>

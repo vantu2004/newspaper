@@ -59,7 +59,8 @@
 										<span class="px-2 text-white">/</span> <a class="text-white"
 											href="">${news.pubdate}</a>
 									</div>
-									<a class="h2 m-0 text-white font-weight-bold" href="/detail-news/${news.id}">${news.title}</a>
+									<a class="h2 m-0 text-white font-weight-bold"
+										href="/detail-news/${news.id}">${news.title}</a>
 								</div>
 							</div>
 						</c:forEach>
@@ -79,8 +80,10 @@
 							class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
 
 							<div class="d-flex flex-column" style="flex: 3;">
-								<a class="m-0" style="color: black;" href="/detail-news/${news.id}">${news.title}</a> <a
-									href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span class="px-1"></span>
+								<a class="m-0" style="color: black;"
+									href="/detail-news/${news.id}">${news.title}</a> <a
+									href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+								<span class="px-1"></span>
 								<p>${news.pubdate}</p>
 							</div>
 							<div class="position-relative overflow-hidden"
@@ -150,8 +153,8 @@
 								<!-- Phần danh mục và ngày tháng -->
 								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 13px;">
-										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
-											class="px-1">/</span> <span>${news.pubdate}</span>
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+										<span class="px-1">/</span> <span>${news.pubdate}</span>
 									</div>
 
 									<!-- Phần tiêu đề -->
@@ -182,8 +185,8 @@
 								<!-- Phần danh mục và ngày tháng -->
 								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 13px;">
-										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
-											class="px-1">/</span> <span>${news.pubdate}</span>
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+										<span class="px-1">/</span> <span>${news.pubdate}</span>
 									</div>
 
 									<!-- Phần tiêu đề -->
@@ -222,8 +225,8 @@
 								<!-- Phần danh mục và ngày tháng -->
 								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 13px;">
-										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
-											class="px-1">/</span> <span>${news.pubdate}</span>
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+										<span class="px-1">/</span> <span>${news.pubdate}</span>
 									</div>
 
 									<!-- Phần tiêu đề -->
@@ -254,8 +257,8 @@
 								<!-- Phần danh mục và ngày tháng -->
 								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 13px;">
-										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
-											class="px-1">/</span> <span>${news.pubdate}</span>
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+										<span class="px-1">/</span> <span>${news.pubdate}</span>
 									</div>
 
 									<!-- Phần tiêu đề -->
@@ -284,7 +287,8 @@
 								<h3 class="m-0">Giáo dục</h3>
 								<a
 									class="text-secondary font-weight-medium text-decoration-none"
-									href="/listNews/${listNews.giaoDuc[0].category.id}">Xem tất cả</a>
+									href="/listNews/${listNews.giaoDuc[0].category.id}">Xem tất
+									cả</a>
 							</div>
 						</div>
 						<c:forEach var="news" items="${listNews.giaoDuc}" begin="0"
@@ -300,8 +304,8 @@
 									<!-- Phần danh mục và ngày tháng -->
 									<div class="p-3 bg-light">
 										<div class="mb-2" style="font-size: 14px;">
-											<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
-												class="px-1">/</span> <span>${news.pubdate}</span>
+											<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+											<span class="px-1">/</span> <span>${news.pubdate}</span>
 										</div>
 
 										<!-- Phần tiêu đề -->

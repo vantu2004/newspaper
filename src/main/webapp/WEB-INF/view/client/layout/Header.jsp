@@ -65,7 +65,7 @@
 								class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
 								<div class="d-flex flex-column" style="flex: 3;">
 									<a class="m-0" style="color: black;" href="/detail-news/${news.id}">${news.title}</a> <a
-										href="${news.category.id}">${news.category.nameCategory}</a>
+										href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
 									<span class="px-1"></span>
 									<p>${news.pubdate}</p>
 								</div>
@@ -94,12 +94,12 @@
 								<c:when test="${not empty sessionScope.avatar}">
 									<img
 										style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;"
-										src="avatar/${sessionScope.avatar}" />
+										src="/avatar/${sessionScope.avatar}" />
 								</c:when>
 								<c:otherwise>
 									<img
 										style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;"
-										src="avatar/noUser.png" />
+										src="/avatar/noUser.png" />
 								</c:otherwise>
 							</c:choose>
 							<div class="text-center my-3">

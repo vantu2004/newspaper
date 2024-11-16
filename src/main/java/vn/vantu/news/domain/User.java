@@ -50,10 +50,6 @@ public class User {
 	@JoinColumn(name = "role_id")
 	private Role role;
 
-	// 1 user có nhiều order, ko giữ khóa ngoại -> mapped by order
-	@OneToMany(mappedBy = "user")
-	Set<Order> orders;
-
 	// 1 user có thể lưu được nhiều tin, tham chiếu tới UserNews
 	@OneToMany(mappedBy = "user")
 	private Set<UserNews> userNews;
@@ -81,14 +77,6 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
-	}
-
-	public Set<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<Order> orders) {
-		this.orders = orders;
 	}
 
 	public Set<UserNews> getUserNews() {

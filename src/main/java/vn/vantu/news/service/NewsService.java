@@ -7,17 +7,24 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpSession;
 import vn.vantu.news.domain.ListNews;
 import vn.vantu.news.domain.News;
+import vn.vantu.news.domain.User;
+import vn.vantu.news.domain.UserNews;
 import vn.vantu.news.repository.NewsRepository;
 
 @Service
 public class NewsService {
 
 	private final NewsRepository newsRepository;
+	private final UserService userService;
+	private final UserNewsService userNewsService;
 
-	public NewsService(NewsRepository newsRepository) {
+	public NewsService(NewsRepository newsRepository, UserService userService, UserNewsService userNewsService) {
 		this.newsRepository = newsRepository;
+		this.userService = userService;
+		this.userNewsService = userNewsService;
 	}
 
 	public void handleSaveNews(News news) {
@@ -90,5 +97,22 @@ public class NewsService {
 	
 	public News getDetailNews(long id) {
 		return this.newsRepository.findById(id);
+	}
+	
+	public void handleFollowNews(String email, long newsId, HttpSession session) {
+		User user = this.userService.getUserByEmail(email);
+		News news = getDetailNews(newsId);
+		
+		boolean followNews = this.userNewsService.checkExistUserNews(user.getId(), newsId);
+
+		if (user != null && news != null && !followNews)
+		{
+			UserNews userNews = new UserNews();
+			
+			userNews.setUser(user);
+			userNews.setNews(news);
+			
+			this.userNewsService.handleSaveUserNews(userNews);
+		}
 	}
 }
