@@ -25,25 +25,6 @@ public class ListNews {
 	List<News> yKien = new ArrayList<>();
 	List<News> tamSu = new ArrayList<>();
 	
-	Map<Long, String> categoryName = new HashMap<>();
-
-	public ListNews()
-	{
-		setCategoryName();
-	}
-	
-	
-	
-	public Map<Long, String> getCategoryName() {
-		return categoryName;
-	}
-
-	public void setCategoryName(Map<Long, String> categoryName) {
-		this.categoryName = categoryName;
-	}
-
-
-
 	public List<News> getTinMoi() {
 		return tinMoi;
 	}
@@ -180,23 +161,4 @@ public class ListNews {
 		this.tamSu = tamSu;
 	}
 	
-	private void setCategoryName()
-	{
-		categoryName.put(Long.valueOf(1), "Thế giới");
-		categoryName.put(Long.valueOf(2), "Thời sự");
-		categoryName.put(Long.valueOf(3), "Kinh doanh");
-		categoryName.put(Long.valueOf(4), "Startup");
-		categoryName.put(Long.valueOf(5), "Thể thao");
-		categoryName.put(Long.valueOf(6), "Giải trí");
-		categoryName.put(Long.valueOf(7), "Pháp luật");
-		categoryName.put(Long.valueOf(8), "Giáo dục");
-		categoryName.put(Long.valueOf(9), "Sức khỏe");
-		categoryName.put(Long.valueOf(10), "Đời sống");
-		categoryName.put(Long.valueOf(11), "Du lịch");
-		categoryName.put(Long.valueOf(12), "Khoa học");
-		categoryName.put(Long.valueOf(13), "Số hóa");
-		categoryName.put(Long.valueOf(14), "Xe");
-		categoryName.put(Long.valueOf(15), "Ý kiến");
-		categoryName.put(Long.valueOf(16), "Tâm sự");
-	}
 }

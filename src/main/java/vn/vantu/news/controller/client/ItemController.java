@@ -21,15 +21,6 @@ public class ItemController {
 	public ItemController(NewsService newsService) {
 		this.newsService = newsService;
 	}
-
-//	@GetMapping("/product/{id}")
-//	private String getHomePage(Model model,  @PathVariable long id) {
-//		Product product = this.productService.getInfoProductById(id);
-//		model.addAttribute("product", product);
-//		model.addAttribute("id", id);
-//		
-//		return "client/product/Detail";
-//	}
 	
 	@GetMapping("/listNews/{id}")
 	private String getListNews(Model model,  @PathVariable long id) {
@@ -40,5 +31,17 @@ public class ItemController {
 		model.addAttribute("listNewsOneCategory", listNewsOneCategory);
 		
 		return "client/news/ListNews";
+	}
+	
+	@GetMapping("/detail-news/{id}")
+	private String getDetailNews(Model model,  @PathVariable long id) {
+		ListNews listNews = this.newsService.getAllNews();
+		
+		News news = this.newsService.getDetailNews(id);
+		
+		model.addAttribute("listNews", listNews);
+		model.addAttribute("news", news);
+		
+		return "client/news/DetailNews";
 	}
 }

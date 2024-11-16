@@ -29,7 +29,6 @@ public class HomePageController {
 	private final PasswordEncoder passwordEncoder;
 	private final UseJsoupGetNews useJsoupGetNews;
 	private final NewsService newsService;
-	private ListNews listNews;
 
 	public HomePageController(ProductService productservice, UserService userservice, PasswordEncoder passwordEncoder,
 			UseJsoupGetNews useJsoupGetNews, NewsService newsService) {
@@ -42,15 +41,12 @@ public class HomePageController {
 
 	@GetMapping("/")
 	private String getHomePage(Model model, HttpServletRequest request) {
-		List<Product> products = productservice.getAllProduct();
-		model.addAttribute("products", products);
-
 		useJsoupGetNews.LoadNewsFromRSS();
-		
-		listNews = newsService.getAllNews();
+
+		ListNews listNews = newsService.getAllNews();
 
 		model.addAttribute("listNews", listNews);
-		
+
 		return "client/homepage/HomePage";
 	}
 

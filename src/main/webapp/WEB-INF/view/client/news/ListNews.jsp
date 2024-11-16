@@ -61,9 +61,9 @@
 									</div>
 									<div class="p-3 bg-light">
 										<div class="mb-2" style="font-size: 14px;">
-											<a href="">Giáo dục</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
+											<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
 										</div>
-										<a class="h4" href="">${news.title}</a>
+										<a class="h4" href="/detail-news/${news.id}">${news.title}</a>
 										<p class="m-0">${news.summary}</p>
 									</div>
 								</div>
@@ -99,7 +99,7 @@
 										<div class="mb-1" style="font-size: 13px;">
 											<a href="">Technology</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
 										</div>
-										<a class="h6 m-0" href="">${news.title}</a>
+										<a class="h6 m-0" href="/detail-news/${news.id}">${news.title}</a>
 									</div>
 								</div>
 							</div>

@@ -17,5 +17,7 @@ public interface NewsRepository extends JpaRepository<News, Long>{
 	// Lấy bản ghi mới nhất dựa trên cột id
     News findTopByOrderByIdDesc();
     
-    List<News> findByCategoryIdOrderByPubdateDesc(long categoryId);
+    List<News> findByCategoryIdOrderByPubdateDescPubtimeDesc(long categoryId);
+    
+    News findById(long id);
 }

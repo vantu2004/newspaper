@@ -40,7 +40,8 @@
 	<!-- header end -->
 
 	<!-- mainContent start -->
-	<!-- Main News Slider Start -->
+
+	<!-- Tin Mới -->
 	<div class="container-fluid py-3">
 		<div class="container">
 			<div class="row">
@@ -54,11 +55,11 @@
 									style="object-fit: cover;">
 								<div class="overlay">
 									<div class="mb-1">
-										<a class="text-white" href="">${listNews.getCategoryName().get(Long.valueOf(news.category.getId()))}</a>
+										<a class="text-white" href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
 										<span class="px-2 text-white">/</span> <a class="text-white"
 											href="">${news.pubdate}</a>
 									</div>
-									<a class="h2 m-0 text-white font-weight-bold" href="">${news.title}</a>
+									<a class="h2 m-0 text-white font-weight-bold" href="/detail-news/${news.id}">${news.title}</a>
 								</div>
 							</div>
 						</c:forEach>
@@ -70,16 +71,16 @@
 						class="d-flex align-items-center justify-content-between bg-light py-2 px-3 mb-3">
 						<h3 class="m-0">Tin mới</h3>
 						<a class="text-secondary font-weight-medium text-decoration-none"
-							href="">View All</a>
+							href="">Xem tất cả</a>
 					</div>
-					<c:forEach var="news" items="${listNews.tinMoi}" begin="0" end="2">
+					<c:forEach var="news" items="${listNews.tinMoi}" begin="10"
+						end="12">
 						<div
 							class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
 
 							<div class="d-flex flex-column" style="flex: 3;">
-								<a class="m-0" style="color: black;">${news.title}</a> <a
-									href="">${listNews.getCategoryName().get(Long.valueOf(news.category.getId()))}</a>
-								<span class="px-1"></span>
+								<a class="m-0" style="color: black;" href="/detail-news/${news.id}">${news.title}</a> <a
+									href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span class="px-1"></span>
 								<p>${news.pubdate}</p>
 							</div>
 							<div class="position-relative overflow-hidden"
@@ -93,17 +94,16 @@
 			</div>
 		</div>
 	</div>
-	<!-- Main News Slider End -->
+	<!-- Tin Mới -->
 
-
-	<!-- Featured News Slider Start -->
+	<!-- Thời Sự -->
 	<div class="container-fluid py-3">
 		<div class="container">
 			<div
 				class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
 				<h3 class="m-0">Thời Sự</h3>
 				<a class="text-secondary font-weight-medium text-decoration-none"
-					href="">View All</a>
+					href="/listNews/${listNews.thoiSu[0].category.id}">Xem tất cả</a>
 			</div>
 			<div
 				class="owl-carousel owl-carousel-2 carousel-item-4 position-relative">
@@ -113,10 +113,11 @@
 						<img class="img-fluid w-100 h-100" src="${news.image}"
 							style="object-fit: cover;">
 						<div class="overlay">
-							<a class="h4 m-0 text-white" href="${news.link}">${news.title}</a>
+							<a class="h4 m-0 text-white" href="/detail-news/${news.id}">${news.title}</a>
 							<div class="mb-1" style="font-size: 13px;">
-								<a class="text-white" href="${news.link}">Thời sự</a> <span
-									class="px-1 text-white">/</span> <a class="text-white" href="">${news.pubdate}</a>
+								<a class="text-white" href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+								<span class="px-1 text-white">/</span> <a class="text-white"
+									href="">${news.pubdate}</a>
 							</div>
 						</div>
 					</div>
@@ -124,12 +125,13 @@
 			</div>
 		</div>
 	</div>
-	<!-- Featured News Slider End -->
+	<!-- Thời Sự -->
 
-	<!-- Category News Slider Start -->
+	<!-- Thế Giới - Kinh Doanh-->
 	<div class="container-fluid">
 		<div class="container">
 			<div class="row">
+				<!-- Thế Giới -->
 				<div class="col-lg-6 py-3">
 					<div class="bg-light py-2 px-4 mb-3">
 						<h3 class="m-0">Thế Giới</h3>
@@ -148,17 +150,20 @@
 								<!-- Phần danh mục và ngày tháng -->
 								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 13px;">
-										<a href="">Thế giới</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
+											class="px-1">/</span> <span>${news.pubdate}</span>
 									</div>
 
 									<!-- Phần tiêu đề -->
-									<a class="h4 m-0" href="">${news.title}</a>
+									<a class="h4 m-0" href="/detail-news/${news.id}">${news.title}</a>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
+				<!-- Thế Giới -->
 
+				<!-- Kinh Doanh -->
 				<div class="col-lg-6 py-3">
 					<div class="bg-light py-2 px-4 mb-3">
 						<h3 class="m-0">Kinh Doanh</h3>
@@ -177,26 +182,28 @@
 								<!-- Phần danh mục và ngày tháng -->
 								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 13px;">
-										<a href="">Kinh doanh</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
+											class="px-1">/</span> <span>${news.pubdate}</span>
 									</div>
 
 									<!-- Phần tiêu đề -->
-									<a class="h4 m-0" href="">${news.title}</a>
+									<a class="h4 m-0" href="/detail-news/${news.id}">${news.title}</a>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
+				<!-- Kinh Doanh -->
 			</div>
 		</div>
 	</div>
-	<!-- Category News Slider End -->
+	<!-- Thế Giới - Kinh Doanh -->
 
-
-	<!-- Category News Slider Start -->
+	<!-- Giải Trí - Thể Thao -->
 	<div class="container-fluid">
 		<div class="container">
 			<div class="row">
+				<!-- Giải Trí -->
 				<div class="col-lg-6 py-3">
 					<div class="bg-light py-2 px-4 mb-3">
 						<h3 class="m-0">Giải Trí</h3>
@@ -215,17 +222,20 @@
 								<!-- Phần danh mục và ngày tháng -->
 								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 13px;">
-										<a href="">Giải trí</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
+											class="px-1">/</span> <span>${news.pubdate}</span>
 									</div>
 
 									<!-- Phần tiêu đề -->
-									<a class="h4 m-0" href="">${news.title}</a>
+									<a class="h4 m-0" href="/detail-news/${news.id}">${news.title}</a>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
+				<!-- Giải Trí -->
 
+				<!-- Thể Thao -->
 				<div class="col-lg-6 py-3">
 					<div class="bg-light py-2 px-4 mb-3">
 						<h3 class="m-0">Thể thao</h3>
@@ -244,23 +254,25 @@
 								<!-- Phần danh mục và ngày tháng -->
 								<div class="p-3 bg-light">
 									<div class="mb-2" style="font-size: 13px;">
-										<a href="">Thể thao</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
+											class="px-1">/</span> <span>${news.pubdate}</span>
 									</div>
 
 									<!-- Phần tiêu đề -->
-									<a class="h4 m-0" href="">${news.title}</a>
+									<a class="h4 m-0" href="/detail-news/${news.id}">${news.title}</a>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
 				</div>
+				<!-- Thể Thao -->
 			</div>
 		</div>
 	</div>
-	<!-- Category News Slider End -->
+	<!-- Giải Trí - Thể Thao -->
 
 
-	<!-- News With Sidebar Start -->
+	<!-- Giáo Dục -->
 	<div class="container-fluid py-3">
 		<div class="container">
 			<div class="row">
@@ -272,7 +284,7 @@
 								<h3 class="m-0">Giáo dục</h3>
 								<a
 									class="text-secondary font-weight-medium text-decoration-none"
-									href="">View All</a>
+									href="/listNews/${listNews.giaoDuc[0].category.id}">Xem tất cả</a>
 							</div>
 						</div>
 						<c:forEach var="news" items="${listNews.giaoDuc}" begin="0"
@@ -288,11 +300,12 @@
 									<!-- Phần danh mục và ngày tháng -->
 									<div class="p-3 bg-light">
 										<div class="mb-2" style="font-size: 14px;">
-											<a href="">Giáo dục</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
+											<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span
+												class="px-1">/</span> <span>${news.pubdate}</span>
 										</div>
 
 										<!-- Phần tiêu đề -->
-										<a class="h4" href="">${news.title}</a>
+										<a class="h4" href="/detail-news/${news.id}">${news.title}</a>
 
 										<!-- Phần mô tả -->
 										<p class="m-0">${news.summary}</p>
@@ -305,7 +318,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- News With Sidebar End -->
+	<!-- Giáo Dục-->
 
 	<!-- mainContent end -->
 

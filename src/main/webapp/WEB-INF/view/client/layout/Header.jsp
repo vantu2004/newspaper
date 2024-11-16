@@ -32,22 +32,22 @@
 					class="fas fa-list-ul"></i> <i class="fas fa-angle-down"></i></a>
 
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="/listNews/1">Thế giới</a> <a
-						class="dropdown-item" href="/listNews/2">Thời sự</a> <a
-						class="dropdown-item" href="/listNews/3">Kinh doanh</a> <a
+					<a class="dropdown-item" href="/listNews/1">Thế Giới</a> <a
+						class="dropdown-item" href="/listNews/2">Thời Sự</a> <a
+						class="dropdown-item" href="/listNews/3">Kinh Doanh</a> <a
 						class="dropdown-item" href="/listNews/4">Startup</a> <a
-						class="dropdown-item" href="/listNews/5">Giải trí</a> <a
-						class="dropdown-item" href="/listNews/6">Thể thao</a> <a
-						class="dropdown-item" href="/listNews/7">Pháp luật</a> <a
-						class="dropdown-item" href="/listNews/8">Giáo dục</a> <a
-						class="dropdown-item" href="/listNews/9">Sức khỏe</a> <a
-						class="dropdown-item" href="/listNews/10">Đời sống</a> <a
-						class="dropdown-item" href="/listNews/11">Du lịch</a> <a
-						class="dropdown-item" href="/listNews/12">Khoa học</a> <a
-						class="dropdown-item" href="/listNews/13">Số hóa</a> 
+						class="dropdown-item" href="/listNews/5">Giải Trí</a> <a
+						class="dropdown-item" href="/listNews/6">Thể Thao</a> <a
+						class="dropdown-item" href="/listNews/7">Pháp Luật</a> <a
+						class="dropdown-item" href="/listNews/8">Giáo Dục</a> <a
+						class="dropdown-item" href="/listNews/9">Sức Khỏe</a> <a
+						class="dropdown-item" href="/listNews/10">Đời Sống</a> <a
+						class="dropdown-item" href="/listNews/11">Du Lịch</a> <a
+						class="dropdown-item" href="/listNews/12">Khoa Học</a> <a
+						class="dropdown-item" href="/listNews/13">Số Hóa</a> 
 						<a class="dropdown-item" href="/listNews/14">Xe</a> 
-						<a class="dropdown-item" href="/listNews/15">Ý kiến</a> <a
-						class="dropdown-item" href="/listNews/16">Tâm sự</a>
+						<a class="dropdown-item" href="/listNews/15">Ý Kiến</a> <a
+						class="dropdown-item" href="/listNews/16">Tâm Sự</a>
 				</div>
 			</div>
 
@@ -64,8 +64,8 @@
 							<div
 								class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
 								<div class="d-flex flex-column" style="flex: 3;">
-									<a class="m-0" style="color: black;">${news.title}</a> <a
-										href="">${listNews.getCategoryName().get(Long.valueOf(news.category.getId()))}</a>
+									<a class="m-0" style="color: black;" href="/detail-news/${news.id}">${news.title}</a> <a
+										href="${news.category.id}">${news.category.nameCategory}</a>
 									<span class="px-1"></span>
 									<p>${news.pubdate}</p>
 								</div>

@@ -86,7 +86,7 @@ public class SecurityConfiguration {
 		http.authorizeHttpRequests(authorize -> authorize
 				.dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
 
-				.requestMatchers("/", "/register", "/login", "/listNews/**", "/client/**", "/css/**", "/js/**", "/productImage/**")
+				.requestMatchers("/", "/register", "/login", "/listNews/**", "/detail-news/**", "/client/**", "/css/**", "/js/**", "/productImage/**")
 				.permitAll()
 
 				// hàm hasRole cần bỏ tiền tố ROLE_ và chỉ lấy đúng tên role

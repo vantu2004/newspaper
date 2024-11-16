@@ -1,5 +1,6 @@
 package vn.vantu.news.service;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,28 +35,28 @@ public class NewsService {
 
 	public List<News> getOneListNews(long id)
 	{
-		return this.newsRepository.findByCategoryIdOrderByPubdateDesc(id);
+		return this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(id);
 	}
 	
 	public ListNews getAllNews() {
 		ListNews listNews = new ListNews();
 
-		listNews.setTheGioi(this.newsRepository.findByCategoryIdOrderByPubdateDesc(1));
-		listNews.setThoiSu(this.newsRepository.findByCategoryIdOrderByPubdateDesc(2));
-		listNews.setKinhDoanh(this.newsRepository.findByCategoryIdOrderByPubdateDesc(3));
-		listNews.setStartup(this.newsRepository.findByCategoryIdOrderByPubdateDesc(4));
-		listNews.setTheThao(this.newsRepository.findByCategoryIdOrderByPubdateDesc(5));
-		listNews.setGiaiTri(this.newsRepository.findByCategoryIdOrderByPubdateDesc(6));
-		listNews.setPhapLuat(this.newsRepository.findByCategoryIdOrderByPubdateDesc(7));
-		listNews.setGiaoDuc(this.newsRepository.findByCategoryIdOrderByPubdateDesc(8));
-		listNews.setSucKhoe(this.newsRepository.findByCategoryIdOrderByPubdateDesc(9));
-		listNews.setDoiSong(this.newsRepository.findByCategoryIdOrderByPubdateDesc(10));
-		listNews.setDuLich(this.newsRepository.findByCategoryIdOrderByPubdateDesc(11));
-		listNews.setKhoaHoc(this.newsRepository.findByCategoryIdOrderByPubdateDesc(12));
-		listNews.setSoHoa(this.newsRepository.findByCategoryIdOrderByPubdateDesc(13));
-		listNews.setXe(this.newsRepository.findByCategoryIdOrderByPubdateDesc(14));
-		listNews.setyKien(this.newsRepository.findByCategoryIdOrderByPubdateDesc(15));
-		listNews.setTamSu(this.newsRepository.findByCategoryIdOrderByPubdateDesc(16));
+		listNews.setTheGioi(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(1));
+		listNews.setThoiSu(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(2));
+		listNews.setKinhDoanh(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(3));
+		listNews.setStartup(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(4));
+		listNews.setTheThao(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(5));
+		listNews.setGiaiTri(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(6));
+		listNews.setPhapLuat(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(7));
+		listNews.setGiaoDuc(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(8));
+		listNews.setSucKhoe(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(9));
+		listNews.setDoiSong(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(10));
+		listNews.setDuLich(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(11));
+		listNews.setKhoaHoc(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(12));
+		listNews.setSoHoa(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(13));
+		listNews.setXe(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(14));
+		listNews.setyKien(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(15));
+		listNews.setTamSu(this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(16));
 
 		listNews.setTinMoi(mixNews(listNews));
 
@@ -63,33 +64,31 @@ public class NewsService {
 	}
 
 	private List<News> mixNews(ListNews listNews) {
-		List<News> tinMoi = new ArrayList<>();
+	    List<News> tinMoi = new ArrayList<>();
+	    Method[] methods = ListNews.class.getDeclaredMethods();
 
-		// Lấy 5 phần tử đầu tiên từ mỗi danh sách
-		tinMoi.addAll(getTopNews(listNews.getTheGioi(), 5));
-		tinMoi.addAll(getTopNews(listNews.getThoiSu(), 5));
-		tinMoi.addAll(getTopNews(listNews.getKinhDoanh(), 5));
-		tinMoi.addAll(getTopNews(listNews.getStartup(), 5));
-		tinMoi.addAll(getTopNews(listNews.getTheThao(), 5));
-		tinMoi.addAll(getTopNews(listNews.getGiaiTri(), 5));
-		tinMoi.addAll(getTopNews(listNews.getPhapLuat(), 5));
-		tinMoi.addAll(getTopNews(listNews.getGiaoDuc(), 5));
-		tinMoi.addAll(getTopNews(listNews.getSucKhoe(), 5));
-		tinMoi.addAll(getTopNews(listNews.getDoiSong(), 5));
-		tinMoi.addAll(getTopNews(listNews.getDuLich(), 5));
-		tinMoi.addAll(getTopNews(listNews.getKhoaHoc(), 5));
-		tinMoi.addAll(getTopNews(listNews.getSoHoa(), 5));
-		tinMoi.addAll(getTopNews(listNews.getXe(), 5));
-		tinMoi.addAll(getTopNews(listNews.getyKien(), 5));
-		tinMoi.addAll(getTopNews(listNews.getTamSu(), 5));
+	    for (Method method : methods) {
+	        if (method.getName().startsWith("get")) {
+	            try {
+	                List<News> categoryNews = (List<News>) method.invoke(listNews);
+	                tinMoi.addAll(getTopNews(categoryNews, 5));
+	            } catch (Exception e) {
+	                e.printStackTrace(); // Xử lý lỗi nếu cần
+	            }
+	        }
+	    }
 
-		// Trộn danh sách tổng hợp
-		Collections.shuffle(tinMoi);
-		return tinMoi;
+	    Collections.shuffle(tinMoi);
+	    return tinMoi;
 	}
+
 
 	// Phương thức lấy n phần tử đầu tiên từ một danh sách
 	private List<News> getTopNews(List<News> newsList, int limit) {
 		return newsList.subList(0, Math.min(limit, newsList.size()));
+	}
+	
+	public News getDetailNews(long id) {
+		return this.newsRepository.findById(id);
 	}
 }
