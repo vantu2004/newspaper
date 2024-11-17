@@ -86,7 +86,8 @@ public class SecurityConfiguration {
 		http.authorizeHttpRequests(authorize -> authorize
 				.dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
 
-				.requestMatchers("/", "/register", "/login", "/listNews/**", "/detail-news/**", "/client/**", "/css/**", "/js/**", "/productImage/**")
+				.requestMatchers("/", "/register", "/login", "/listNews/**", "/detail-news/**", "/client/**", "/css/**",
+						"/js/**", "/productImage/**")
 				.permitAll()
 
 				// hàm hasRole cần bỏ tiền tố ROLE_ và chỉ lấy đúng tên role
@@ -95,17 +96,18 @@ public class SecurityConfiguration {
 				.anyRequest().authenticated())
 
 				.sessionManagement((sessionManagement) -> sessionManagement
-						//	luôn tạo session mới cho người dùng mới
+						// luôn tạo session mới cho người dùng mới
 						.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-						//	hết hạn session thì logout
+						// hết hạn session thì logout
 						.invalidSessionUrl("/logout?expired")
-						//	tại 1 thời điểm chỉ cho giới hạn thiết bị đăng nhập
+						// tại 1 thời điểm chỉ cho giới hạn thiết bị đăng nhập
 						.maximumSessions(1)
-						//	nếu set là false thì khi người 2 đăng nhập sẽ đã người 1, set là true thì người 2 đăng nhập nhưng phải đợi người 1 hết session
+						// nếu set là false thì khi người 2 đăng nhập sẽ đã người 1, set là true thì
+						// người 2 đăng nhập nhưng phải đợi người 1 hết session
 						.maxSessionsPreventsLogin(false))
 
-				//	mỗi lần đăng xuất thì tự xóa session
-				.logout(logout->logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
+				// mỗi lần đăng xuất thì tự xóa session
+				.logout(logout -> logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
 
 				// khi gọi cơ chế này thì thời hạn session tự động gia hạn bằng vs rememberme
 				.rememberMe(r -> r.rememberMeServices(rememberMeServices()))

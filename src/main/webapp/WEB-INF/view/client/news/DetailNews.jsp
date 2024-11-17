@@ -55,15 +55,31 @@
 									<span class="px-1">/</span> <span>${news.pubdate}</span>
 								</div>
 								<c:if test="${not empty pageContext.request.userPrincipal}">
-									<form action="/follow-news/${news.id}" method="post"
-										class="d-flex align-items-center justify-content-end">
-										<input type="hidden" name="${_csrf.parameterName}"
-											value="${_csrf.token}" />
-										<button type="submit"
-											class="mx-auto btn border border-secondary px-3 text-primary">
-											<i class="fas fa-plus-square"></i> Lưu tin
-										</button>
-									</form>
+									<c:if test="${!checkExistUserNews}">
+										<form action="/follow-news/${news.id}" method="post"
+											class="d-flex align-items-center justify-content-end">
+											<input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" />
+
+											<button type="submit"
+												class="mx-auto btn border border-secondary px-3 text-primary">
+												<i class="fas fa-plus-square"></i> Lưu tin
+											</button>
+										</form>
+									</c:if>
+
+									<c:if test="${checkExistUserNews}">
+										<form action="/unfollow-news/${news.id}" method="post"
+											class="d-flex align-items-center justify-content-end">
+											<input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" />
+
+											<button type="submit"
+												class="mx-auto btn border border-secondary px-3 text-primary">
+												<i class="fas fa-minus-square"></i> Bỏ lưu tin
+											</button>
+										</form>
+									</c:if>
 								</c:if>
 							</div>
 

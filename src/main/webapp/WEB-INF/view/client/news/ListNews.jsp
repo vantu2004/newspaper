@@ -48,7 +48,7 @@
 						<div class="col-12">
 							<div
 								class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-								<h3 class="m-0">Title</h3>
+								<h3 class="m-0">${listNewsOneCategory[0].category.nameCategory}</h3>
 							</div>
 						</div>
 						<c:forEach var="news" items="${listNewsOneCategory}" begin="0"
@@ -84,7 +84,7 @@
 						<div class="col-12">
 							<div
 								class="d-flex align-items-center justify-content-between bg-light py-2 px-4 mb-3">
-								<h3 class="m-0">Giáo dục</h3>
+								<h3 class="m-0">${listNewsOneCategory[0].category.nameCategory}</h3>
 							</div>
 						</div>
 						<c:forEach var="news" items="${listNewsOneCategory}" begin="12"
@@ -97,7 +97,7 @@
 										class="w-100 d-flex flex-column justify-content-center bg-light px-3"
 										style="height: 100px;">
 										<div class="mb-1" style="font-size: 13px;">
-											<a href="">Technology</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
+											<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a> <span class="px-1">/</span> <span>${news.pubdate}</span>
 										</div>
 										<a class="h6 m-0" href="/detail-news/${news.id}">${news.title}</a>
 									</div>

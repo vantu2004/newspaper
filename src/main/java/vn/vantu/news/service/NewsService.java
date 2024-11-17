@@ -115,4 +115,27 @@ public class NewsService {
 			this.userNewsService.handleSaveUserNews(userNews);
 		}
 	}
+	
+	public void handleUnfollowNews(long userId, long newsId) {
+		boolean followNews = this.userNewsService.checkExistUserNews(userId, newsId);
+
+		if (followNews)
+		{
+			this.userNewsService.handleDeleteUserNews(userId, newsId);
+		}
+	}
+	
+	public List<News> getAllFollowNews(List<UserNews> userNews){
+		List<News> listFollowNews = new ArrayList<>();
+		
+		for (UserNews us : userNews) {
+			News news = us.getNews() != null ? this.getDetailNews(us.getNews().getId()) : null;
+			
+			if (news != null) {
+				listFollowNews.add(news);
+			}
+		}
+		
+		return listFollowNews;
+	}
 }

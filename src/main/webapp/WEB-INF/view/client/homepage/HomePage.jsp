@@ -88,8 +88,8 @@
 							</div>
 							<div class="position-relative overflow-hidden"
 								style="flex: 1; margin-left: 10px;">
-								<img class="img-fluid w-100 h-100" src="${news.image}"
-									style="object-fit: cover; height: 300px;">
+								<img class="img-fluid" src="${news.image}"
+									style="object-fit: cover; width: 100%; height: 80px;">
 							</div>
 						</div>
 					</c:forEach>

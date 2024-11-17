@@ -44,9 +44,9 @@
 						class="dropdown-item" href="/listNews/10">Đời Sống</a> <a
 						class="dropdown-item" href="/listNews/11">Du Lịch</a> <a
 						class="dropdown-item" href="/listNews/12">Khoa Học</a> <a
-						class="dropdown-item" href="/listNews/13">Số Hóa</a> 
-						<a class="dropdown-item" href="/listNews/14">Xe</a> 
-						<a class="dropdown-item" href="/listNews/15">Ý Kiến</a> <a
+						class="dropdown-item" href="/listNews/13">Số Hóa</a> <a
+						class="dropdown-item" href="/listNews/14">Xe</a> <a
+						class="dropdown-item" href="/listNews/15">Ý Kiến</a> <a
 						class="dropdown-item" href="/listNews/16">Tâm Sự</a>
 				</div>
 			</div>
@@ -64,7 +64,8 @@
 							<div
 								class="d-flex align-items-start justify-content-between py-0 px-0 mb-3">
 								<div class="d-flex flex-column" style="flex: 3;">
-									<a class="m-0" style="color: black;" href="/detail-news/${news.id}">${news.title}</a> <a
+									<a class="m-0" style="color: black;"
+										href="/detail-news/${news.id}">${news.title}</a> <a
 										href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
 									<span class="px-1"></span>
 									<p>${news.pubdate}</p>
@@ -144,14 +145,16 @@
 			id="navbarCollapse">
 			<div class="navbar-nav mr-auto py-0">
 				<a href="/" class="nav-item nav-link active"><i
-					class="fas fa-home"></i></a> 
-					<a href="/listNews/2" class="nav-item nav-link">Thời sự</a> 
-					<a href="/listNews/1" class="nav-item nav-link">Thế giới</a> 
-					<a href="/listNews/3" class="nav-item nav-link">Kinh doanh</a> 
-					<a href="/listNews/6" class="nav-item nav-link">Giải trí</a> 
-					<a href="/listNews/5" class="nav-item nav-link">Thể thao</a> 
-					<a href="/listNews/8" class="nav-item nav-link">Giáo dục</a> 
-					<a href="/" class="nav-item nav-link">Theo dõi</a>
+					class="fas fa-home"></i></a> <a href="/listNews/2"
+					class="nav-item nav-link">Thời sự</a> <a href="/listNews/1"
+					class="nav-item nav-link">Thế giới</a> <a href="/listNews/3"
+					class="nav-item nav-link">Kinh doanh</a> <a href="/listNews/6"
+					class="nav-item nav-link">Giải trí</a> <a href="/listNews/5"
+					class="nav-item nav-link">Thể thao</a> <a href="/listNews/8"
+					class="nav-item nav-link">Giáo dục</a>
+				<c:if test="${not empty pageContext.request.userPrincipal}">
+					<a href="/follow" class="nav-item nav-link">Theo dõi</a>
+				</c:if>
 			</div>
 		</div>
 	</nav>
