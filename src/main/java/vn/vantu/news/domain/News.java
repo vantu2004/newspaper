@@ -39,13 +39,13 @@ public class News {
 	private String image;
 
 	// dùng mediumtext có thể lưu chuỗi nặng 4mb
-	@Column(columnDefinition = "MEDIUMTEXT")
+	@Column(columnDefinition = "TEXT")
 	private String summary;
 
-	@Column(columnDefinition = "MEDIUMTEXT")
+	@Column(columnDefinition = "TEXT")
 	private String content;
 
-	@Column(columnDefinition = "MEDIUMTEXT")
+	@Column(columnDefinition = "TEXT")
 	private String author;
 
 	// 1 tin có thể được lưu bởi nhiều user, tham chiếu tới UserNews

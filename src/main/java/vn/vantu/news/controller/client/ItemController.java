@@ -6,13 +6,16 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.vantu.news.domain.ListNews;
 import vn.vantu.news.domain.News;
+import vn.vantu.news.domain.UserCategory;
 import vn.vantu.news.domain.UserNews;
 import vn.vantu.news.service.NewsService;
 import vn.vantu.news.service.UserNewsService;
@@ -51,13 +54,17 @@ public class ItemController {
 		HttpSession session = request.getSession(false);
 
 		long newsId = id;
-		
+
 		if (session != null && session.getAttribute("id") != null) {
-		    long userId = (long) session.getAttribute("id");
+			long userId = (long) session.getAttribute("id");
 
 			boolean checkExistUserNews = this.userNewsService.checkExistUserNews(userId, newsId);
 
 			model.addAttribute("checkExistUserNews", checkExistUserNews);
+
+			// để dùng cho /rating
+			model.addAttribute("userCategory", new UserCategory());
+			model.addAttribute("userId", userId);
 		}
 
 		return "client/news/DetailNews";
@@ -77,16 +84,16 @@ public class ItemController {
 
 		return "redirect:/detail-news/" + newsId;
 	}
-	
+
 	@PostMapping("/unfollow-news/{id}")
 	public String unfollowNews(Model model, @PathVariable long id, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		
+
 		long newsId = id;
 		long userId = (long) session.getAttribute("id");
 
 		this.newsService.handleUnfollowNews(userId, newsId);
-		
+
 		return "redirect:/detail-news/" + newsId;
 	}
 
@@ -94,10 +101,10 @@ public class ItemController {
 	public String getFollowNewsPage(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		long userId = (long) session.getAttribute("id");
-		
+
 		List<UserNews> userNews = this.userNewsService.getAllFollowNews(userId);
 		List<News> listFollowNews = this.newsService.getAllFollowNews(userNews);
-	
+
 		model.addAttribute("listFollowNews", listFollowNews);
 
 		return "client/news/FollowNews";
@@ -106,12 +113,23 @@ public class ItemController {
 	@PostMapping("/unfollow-news-followPage/{id}")
 	public String unfollowNewsFollowPage(Model model, @PathVariable long id, HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		
+
 		long newsId = id;
 		long userId = (long) session.getAttribute("id");
 
 		this.newsService.handleUnfollowNews(userId, newsId);
-		
+
 		return "redirect:/follow";
+	}
+
+	@PostMapping("/rating")
+	public String submitRating(@ModelAttribute("userCategory") UserCategory userCategory,
+			@RequestParam("newsId") long newsId) {
+		System.out.println("newsId: " + newsId);
+		System.out.println("userId: " + userCategory.getUser().getId());
+		System.out.println("categoryId: " + userCategory.getCategory().getId());
+		System.out.println("interaction score: " + userCategory.getInteractionScore());
+
+		return "redirect:/detail-news/" + newsId;
 	}
 }

@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +26,8 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
 	rel="stylesheet">
+<link rel='stylesheet prefetch'
+	href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
 
 <!-- Libraries Stylesheet -->
 <link href="/client/lib/owlcarousel/assets/owl.carousel.min.css"
@@ -92,9 +95,70 @@
 								<c:out value="${news.content}" escapeXml="false" />
 								<p>${news.author}</p>
 							</div>
+
+							<!-- Đánh giá chủ đề bài viết -->
+							<c:if test="${not empty pageContext.request.userPrincipal}">
+								<div style="width: 100%; text-align: center; margin-top: 10px">
+									<p style="font-size: 14px; font-style: italic; margin: 0;">(Đánh
+										giá chất lượng chủ đề bài viết)</p>
+
+									<form:form action="/rating" method="post"
+										modelAttribute="userCategory"
+										style="display: inline-block; text-align: center;">
+
+										<!-- CSRF token -->
+										<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+
+										<div style="display: block;">
+											<!-- Các radio button đánh giá sao -->
+											<div class="rating-stars">
+												<form:radiobutton class="star star-5" id="star-5"
+													path="interactionScore" value="5" />
+												<label class="star star-5" for="star-5"></label>
+
+												<form:radiobutton class="star star-4" id="star-4"
+													path="interactionScore" value="4" />
+												<label class="star star-4" for="star-4"></label>
+
+												<form:radiobutton class="star star-3" id="star-3"
+													path="interactionScore" value="3" />
+												<label class="star star-3" for="star-3"></label>
+
+												<form:radiobutton class="star star-2" id="star-2"
+													path="interactionScore" value="2" />
+												<label class="star star-2" for="star-2"></label>
+
+												<form:radiobutton class="star star-1" id="star-1"
+													path="interactionScore" value="1" />
+												<label class="star star-1" for="star-1"></label>
+											</div>
+
+											<!-- Truyền categoryId -->
+											<form:hidden path="category.id" value="${news.category.id}" />
+
+											<!-- Truyền userId -->
+											<form:hidden path="user.id" value="${userId}" />
+
+											<!-- Truyền newsId -->
+											<input type="hidden" name="newsId" value="${news.id}" />
+										</div>
+
+										<!-- Nút submit -->
+										<button type="submit"
+											class="btn border border-secondary px-3 text-primary">
+											Xác nhận</button>
+									</form:form>
+
+								</div>
+							</c:if>
+							<!-- Đánh giá chủ đề bài viết -->
+
+
 						</div>
 					</div>
 					<!-- News Detail End -->
+
 
 					<!-- Comment List Start -->
 					<div class="bg-light mb-3" style="padding: 30px;">
