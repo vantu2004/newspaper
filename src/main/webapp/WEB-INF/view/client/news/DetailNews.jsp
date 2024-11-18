@@ -215,27 +215,14 @@
 
 					<!-- Comment Form Start -->
 					<div class="bg-light mb-3" style="padding: 30px;">
-						<h3 class="mb-4">Leave a comment</h3>
+						<h3 class="mb-4">Bình luận</h3>
 						<form>
 							<div class="form-group">
-								<label for="name">Name *</label> <input type="text"
-									class="form-control" id="name">
-							</div>
-							<div class="form-group">
-								<label for="email">Email *</label> <input type="email"
-									class="form-control" id="email">
-							</div>
-							<div class="form-group">
-								<label for="website">Website</label> <input type="url"
-									class="form-control" id="website">
-							</div>
-
-							<div class="form-group">
-								<label for="message">Message *</label>
+								<label for="message">Chi tiết *</label>
 								<textarea id="message" cols="30" rows="5" class="form-control"></textarea>
 							</div>
 							<div class="form-group mb-0">
-								<input type="submit" value="Leave a comment"
+								<input type="submit" value="Gửi"
 									class="btn btn-primary font-weight-semi-bold py-2 px-3">
 							</div>
 						</form>
@@ -247,102 +234,78 @@
 					<!-- Popular News Start -->
 					<div class="pb-3">
 						<div class="bg-light py-2 px-4 mb-3">
-							<h3 class="m-0">Tranding</h3>
+							<h3 class="m-0">Dành cho bạn</h3>
 						</div>
-						<div class="d-flex mb-3">
-							<img src="img/news-100x100-1.jpg"
-								style="width: 100px; height: 100px; object-fit: cover;">
-							<div
-								class="w-100 d-flex flex-column justify-content-center bg-light px-3"
-								style="height: 100px;">
-								<div class="mb-1" style="font-size: 13px;">
-									<a href="">Technology</a> <span class="px-1">/</span> <span>January
-										01, 2045</span>
+
+						<c:forEach var="news" items="${recommendationNews}" begin="0"
+							end="6">
+							<div class="d-flex mb-3">
+								<img src="${news.image}"
+									style="width: 100px; height: 100px; object-fit: cover;">
+								<div
+									class="w-100 d-flex flex-column justify-content-center bg-light px-3"
+									style="height: 100px;">
+									<div class="mb-1" style="font-size: 13px;">
+										<a href="/listNews/${news.category.id}">${news.category.nameCategory}</a>
+										<span class="px-1">/</span> <span>${news.pubdate}</span>
+									</div>
+									<a class="h6 m-0" href="/detail-news/${news.id}">${news.title}</a>
 								</div>
-								<a class="h6 m-0" href="">Lorem ipsum dolor sit amet consec
-									adipis elit</a>
 							</div>
-						</div>
-						<div class="d-flex mb-3">
-							<img src="img/news-100x100-2.jpg"
-								style="width: 100px; height: 100px; object-fit: cover;">
-							<div
-								class="w-100 d-flex flex-column justify-content-center bg-light px-3"
-								style="height: 100px;">
-								<div class="mb-1" style="font-size: 13px;">
-									<a href="">Technology</a> <span class="px-1">/</span> <span>January
-										01, 2045</span>
-								</div>
-								<a class="h6 m-0" href="">Lorem ipsum dolor sit amet consec
-									adipis elit</a>
-							</div>
-						</div>
-						<div class="d-flex mb-3">
-							<img src="img/news-100x100-3.jpg"
-								style="width: 100px; height: 100px; object-fit: cover;">
-							<div
-								class="w-100 d-flex flex-column justify-content-center bg-light px-3"
-								style="height: 100px;">
-								<div class="mb-1" style="font-size: 13px;">
-									<a href="">Technology</a> <span class="px-1">/</span> <span>January
-										01, 2045</span>
-								</div>
-								<a class="h6 m-0" href="">Lorem ipsum dolor sit amet consec
-									adipis elit</a>
-							</div>
-						</div>
-						<div class="d-flex mb-3">
-							<img src="img/news-100x100-4.jpg"
-								style="width: 100px; height: 100px; object-fit: cover;">
-							<div
-								class="w-100 d-flex flex-column justify-content-center bg-light px-3"
-								style="height: 100px;">
-								<div class="mb-1" style="font-size: 13px;">
-									<a href="">Technology</a> <span class="px-1">/</span> <span>January
-										01, 2045</span>
-								</div>
-								<a class="h6 m-0" href="">Lorem ipsum dolor sit amet consec
-									adipis elit</a>
-							</div>
-						</div>
-						<div class="d-flex mb-3">
-							<img src="img/news-100x100-5.jpg"
-								style="width: 100px; height: 100px; object-fit: cover;">
-							<div
-								class="w-100 d-flex flex-column justify-content-center bg-light px-3"
-								style="height: 100px;">
-								<div class="mb-1" style="font-size: 13px;">
-									<a href="">Technology</a> <span class="px-1">/</span> <span>January
-										01, 2045</span>
-								</div>
-								<a class="h6 m-0" href="">Lorem ipsum dolor sit amet consec
-									adipis elit</a>
-							</div>
-						</div>
+						</c:forEach>
+
 					</div>
 					<!-- Popular News End -->
 
-					<!-- Tags Start -->
-					<div class="pb-3">
+					<!-- Danh mục đề xuất -->
+<%-- 					<div class="pb-3">
 						<div class="bg-light py-2 px-4 mb-3">
-							<h3 class="m-0">Tags</h3>
+							<h3 class="m-0">Danh mục đề xuất</h3>
 						</div>
 						<div class="d-flex flex-wrap m-n1">
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Politics</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Business</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Corporate</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Sports</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Health</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Education</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Science</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Technology</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Foods</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Entertainment</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Travel</a>
-							<a href="" class="btn btn-sm btn-outline-secondary m-1">Lifestyle</a>
+							<c:forEach var="news" items="${recommendationNews}" begin="0"
+							end="1">
+								<a href="/listNews/${categoryId + 1}"
+									class="btn btn-sm btn-outline-secondary m-1">${category.nameCategory}</a>
+							</c:forEach>
+						</div>
+					</div> --%>
+					<!-- Danh mục đề xuất -->
+
+					<!-- Tất cả danh mục -->
+ 					<div class="pb-3">
+						<div class="bg-light py-2 px-4 mb-3">
+							<h3 class="m-0">Tất cả danh mục</h3>
+						</div>
+						<div class="d-flex flex-wrap m-n1">
+							<a href="/listNews/1"
+								class="btn btn-sm btn-outline-secondary m-1">Thế Giới</a> <a
+								href="/listNews/2" class="btn btn-sm btn-outline-secondary m-1">Thời
+								Sự</a> <a href="/listNews/3"
+								class="btn btn-sm btn-outline-secondary m-1">Kinh Doanh</a> <a
+								href="/listNews/4" class="btn btn-sm btn-outline-secondary m-1">Startup</a>
+							<a href="/listNews/5"
+								class="btn btn-sm btn-outline-secondary m-1">Thể Thao</a> <a
+								href="/listNews/6" class="btn btn-sm btn-outline-secondary m-1">Giải
+								Trí</a> <a href="/listNews/7"
+								class="btn btn-sm btn-outline-secondary m-1">Pháp Luật</a> <a
+								href="/listNews/8" class="btn btn-sm btn-outline-secondary m-1">Giáo
+								Dục</a> <a href="/listNews/9"
+								class="btn btn-sm btn-outline-secondary m-1">Sức Khỏe</a> <a
+								href="/listNews/10" class="btn btn-sm btn-outline-secondary m-1">Đời
+								Sống</a> <a href="/listNews/11"
+								class="btn btn-sm btn-outline-secondary m-1">Du Lịch</a> <a
+								href="/listNews/12" class="btn btn-sm btn-outline-secondary m-1">Khoa
+								Học</a> <a href="/listNews/13"
+								class="btn btn-sm btn-outline-secondary m-1">Số Hóa</a> <a
+								href="/listNews/14" class="btn btn-sm btn-outline-secondary m-1">Xe</a>
+							<a href="/listNews/15"
+								class="btn btn-sm btn-outline-secondary m-1">Ý Kiến</a> <a
+								href="/listNews/16" class="btn btn-sm btn-outline-secondary m-1">Tâm
+								Sự</a>
 						</div>
 					</div>
-					<!-- Tags End -->
+					<!-- Tất cả danh mục -->
 				</div>
 			</div>
 		</div>

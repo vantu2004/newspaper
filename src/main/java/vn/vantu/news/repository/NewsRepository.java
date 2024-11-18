@@ -20,4 +20,6 @@ public interface NewsRepository extends JpaRepository<News, Long>{
     List<News> findByCategoryIdOrderByPubdateDescPubtimeDesc(long categoryId);
     
     News findById(long id);
+    
+    List<News> findAllByCategoryId(long categoryId);
 }

@@ -138,4 +138,20 @@ public class NewsService {
 		
 		return listFollowNews;
 	}
+	
+	public List<News> handleRecommendNewsForUser(List<List<Integer>> recommendations, long userId) {
+	    List<Integer> recommendation = recommendations.get((int) userId - 1);
+	    List<News> recommendationNews = new ArrayList<>();
+
+	    // Thu thập các bài báo từ các categoryId
+	    for (Integer categoryId : recommendation) {
+	        List<News> temp = this.newsRepository.findAllByCategoryId(categoryId + 1); // Cộng 1 vào categoryId (nếu cần)
+	        recommendationNews.addAll(temp);
+	    }
+	    
+	    // Trộn các bài báo (shuffle)
+	    Collections.shuffle(recommendationNews);
+
+	    return recommendationNews;
+	}
 }
