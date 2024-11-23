@@ -1,4 +1,4 @@
-package vn.vantu.news.service;
+package vn.vantu.news.service.Jsoup;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -12,8 +12,9 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 
-import vn.vantu.news.domain.Category;
 import vn.vantu.news.domain.News;
+import vn.vantu.news.service.CategoryService;
+import vn.vantu.news.service.NewsService;
 
 @Service
 public class UseJsoupGetNews {

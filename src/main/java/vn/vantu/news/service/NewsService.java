@@ -5,14 +5,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
-import vn.vantu.news.domain.ListNews;
 import vn.vantu.news.domain.News;
 import vn.vantu.news.domain.User;
 import vn.vantu.news.domain.UserNews;
+import vn.vantu.news.domain.dto.ListNews;
 import vn.vantu.news.repository.NewsRepository;
+import vn.vantu.news.service.specification.NewsSpecification;
 
 @Service
 public class NewsService {
@@ -43,6 +47,17 @@ public class NewsService {
 	public List<News> getOneListNews(long id)
 	{
 		return this.newsRepository.findByCategoryIdOrderByPubdateDescPubtimeDesc(id);
+	}
+	
+	public Page<News> getOneListNews(Pageable pageable, long id)
+	{
+		return this.newsRepository.findAllByCategoryId(pageable, id);
+	}
+	
+	public List<News> getAllNewsByKeyword(String keyword)
+	{
+		Specification<News> specification = NewsSpecification.nameLike(keyword);
+		return this.newsRepository.findAll(specification);
 	}
 	
 	public ListNews getAllNews() {

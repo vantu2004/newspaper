@@ -1,4 +1,4 @@
-package vn.vantu.news.service;
+package vn.vantu.news.service.CollaborativeFiltering;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -87,33 +87,6 @@
 	</div>
 	<!-- mainContent end -->
 
-	<c:if test="${not empty news}">
-		<div class="pagination d-flex justify-content-center mt-5 mb-5">
-
-			<!-- Previous button -->
-			<div class="page-item ${currentPage == 1 ? 'disabled' : ''}">
-				<a class="page-link"
-					href="/listNews/${categoryId}?page=${currentPage - 1}"
-					tabindex="-1"><i class="fas fa-angle-double-left"></i></a>
-			</div>
-
-			<!-- Dynamic page links -->
-			<c:forEach begin="${startPage}" end="${endPage}" var="page">
-				<li class="page-item ${page == currentPage ? 'active' : ''}"><a
-					class="page-link" href="/listNews/${categoryId}?page=${page}">${page}</a>
-				</li>
-			</c:forEach>
-
-			<!-- Next button -->
-			<div class="page-item ${currentPage == endPage ? 'disabled' : ''}">
-				<a class="page-link"
-					href="/listNews/${categoryId}?page=${currentPage + 1}"><i
-					class="fas fa-angle-double-right"></i></a>
-			</div>
-
-		</div>
-	</c:if>
-
 	<c:if test="${empty news}">
 		<div class="pagination d-flex justify-content-center mt-5 mb-5">
 			Không tìm thấy tin liên quan

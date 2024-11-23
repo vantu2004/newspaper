@@ -1,7 +1,15 @@
 package vn.vantu.news.controller.client;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,38 +20,80 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import vn.vantu.news.domain.ListNews;
+import vn.vantu.news.domain.Comment;
 import vn.vantu.news.domain.News;
+import vn.vantu.news.domain.News_;
+import vn.vantu.news.domain.User;
 import vn.vantu.news.domain.UserCategory;
 import vn.vantu.news.domain.UserNews;
-import vn.vantu.news.service.CollaborativeFilteringService;
+import vn.vantu.news.domain.dto.ListNews;
+import vn.vantu.news.service.CommentService;
 import vn.vantu.news.service.NewsService;
 import vn.vantu.news.service.UserCategoryService;
 import vn.vantu.news.service.UserNewsService;
+import vn.vantu.news.service.UserService;
+import vn.vantu.news.service.CollaborativeFiltering.CollaborativeFilteringService;
 
 @Controller
 public class ItemController {
 
+	private final UserService userService;
 	private final NewsService newsService;
 	private final UserNewsService userNewsService;
 	private final UserCategoryService userCategoryService;
 	private final CollaborativeFilteringService collaborativeFilteringService;
+	private final CommentService commentService;
 
-	public ItemController(NewsService newsService, UserNewsService userNewsService,
-			UserCategoryService userCategoryService, CollaborativeFilteringService collaborativeFilteringService) {
+	public ItemController(UserService userService, NewsService newsService, UserNewsService userNewsService,
+			UserCategoryService userCategoryService, CollaborativeFilteringService collaborativeFilteringService,
+			CommentService commentService) {
+		this.userService = userService;
 		this.newsService = newsService;
 		this.userNewsService = userNewsService;
 		this.userCategoryService = userCategoryService;
 		this.collaborativeFilteringService = collaborativeFilteringService;
+		this.commentService = commentService;
 	}
 
 	@GetMapping("/listNews/{id}")
-	private String getListNews(Model model, @PathVariable long id) {
-		ListNews listNews = this.newsService.getAllNews();
-		List<News> listNewsOneCategory = this.newsService.getOneListNews(id);
+	private String getListNews(Model model, @PathVariable long id,
+			@RequestParam("page") Optional<String> pageOptional) {
 
+		ListNews listNews = this.newsService.getAllNews();
 		model.addAttribute("listNews", listNews);
-		model.addAttribute("listNewsOneCategory", listNewsOneCategory);
+
+		int currentPage = 1;
+		try {
+			if (pageOptional.isPresent()) {
+				currentPage = Integer.parseInt(pageOptional.get());
+			}
+		} catch (Exception ex) {
+
+		}
+
+		// trang bắt đầu khi dùng pageable là 0
+		Pageable pageable = PageRequest.of(currentPage - 1, 16, Sort.by(News_.PUBDATE).descending());
+		Page<News> pageNews = this.newsService.getOneListNews(pageable, id);
+		List<News> news = pageNews.getContent().size() > 0 ? pageNews.getContent() : new ArrayList<>();
+
+		// Số lượng trang hiển thị tối đa
+		int maxDisplayPages = 5;
+		// đảm bảo trang bắt đầu ko < 1
+		int startPage = Math.max(1, currentPage - 2);
+		// đảm bảo trang kết thúc luôn < totalPages
+		int endPage = Math.min(startPage + maxDisplayPages - 1, pageNews.getTotalPages());
+
+		// Điều chỉnh lại chỉ số cho trang bắt đầu
+		if (endPage - startPage + 1 < maxDisplayPages) {
+			startPage = Math.max(1, endPage - maxDisplayPages + 1);
+		}
+
+		model.addAttribute("categoryId", id);
+		model.addAttribute("news", news);
+		// Truyền startPage và endPage về view
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("currentPage", currentPage);
 
 		return "client/news/ListNews";
 	}
@@ -66,7 +116,7 @@ public class ItemController {
 			boolean checkExistUserNews = this.userNewsService.checkExistUserNews(userId, newsId);
 			model.addAttribute("checkExistUserNews", checkExistUserNews);
 
-			//	dùng cho rating, hiện sao, truyền UserCategory
+			// dùng cho rating, hiện sao, truyền UserCategory
 			UserCategory us = this.userCategoryService.getUserCategory(userId, news.getCategory().getId());
 			if (us != null) {
 				model.addAttribute("userCategory", us);
@@ -75,19 +125,23 @@ public class ItemController {
 			}
 
 			model.addAttribute("userId", userId);
-			
-			//	tạo ma trận dữ liệu thô từ table UserCategory
+
+			// tạo ma trận dữ liệu thô từ table UserCategory
 			double[][] matrix = this.collaborativeFilteringService.createMatrix();
-			//	dùng thuật toán để lấy ra các danh mục đề xuất cho người dùng
+			// dùng thuật toán để lấy ra các danh mục đề xuất cho người dùng
 			List<List<Integer>> recommend = this.collaborativeFilteringService.collaborativeFiltering(matrix);
 
-			//	truyền vào view để lấy các bài báo và danh mục đề xuất
-			List<Integer> recommendationCategory = recommend.get((int)userId -1);
-			List<News> recommendationNews = this.newsService.handleRecommendNewsForUser(recommend, userId);	
+			// truyền vào view để lấy các bài báo và danh mục đề xuất
+			List<Integer> recommendationCategory = recommend.get((int) userId - 1);
+			List<News> recommendationNews = this.newsService.handleRecommendNewsForUser(recommend, userId);
 			model.addAttribute("recommendationCategory", recommendationCategory);
 			model.addAttribute("recommendationNews", recommendationNews);
+			
+			//	lấy tất cả comment trong bài báo
+			List<Comment> listComment = this.commentService.getAllCommentByNewsId(newsId);
+			model.addAttribute("listComment", listComment);
 		}
-		
+
 		return "client/news/DetailNews";
 	}
 
@@ -156,6 +210,44 @@ public class ItemController {
 		} else {
 			this.userCategoryService.handleSaveUserCategory(userCategory);
 		}
+
+		return "redirect:/detail-news/" + newsId;
+	}
+
+	@PostMapping("/search")
+	public String searchNews(Model model, @RequestParam("keyword") String keyword) {
+
+		ListNews listNews = this.newsService.getAllNews();
+		model.addAttribute("listNews", listNews);
+
+		List<News> news = this.newsService.getAllNewsByKeyword(keyword);
+		model.addAttribute("news", news);
+
+		return "client/news/SearchNews";
+	}
+
+	@PostMapping("/comment")
+	public String createComment(Model model, HttpServletRequest request, @RequestParam("newsId") long newsId,
+			@RequestParam("comment") String comment) {
+		HttpSession session = request.getSession(false);
+		long userId = (long) session.getAttribute("id");
+		User user = this.userService.getInfoUserById(userId);
+		
+		News news = this.newsService.getDetailNews(newsId);
+		
+		LocalDateTime now = LocalDateTime.now();
+
+		if (comment != null && !comment.isEmpty()) {
+			Comment cmt = new Comment();
+			cmt.setContent(comment);
+			cmt.setCommentDatetime(now);
+			cmt.setUser(user);
+			cmt.setNews(news);
+			
+			this.commentService.handleSaveComment(cmt);
+		}
+		
+		System.out.println(userId + "\n" + newsId + "\n" + comment + "\n" + now);
 
 		return "redirect:/detail-news/" + newsId;
 	}

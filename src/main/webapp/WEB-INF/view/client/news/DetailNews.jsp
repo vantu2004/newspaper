@@ -162,71 +162,56 @@
 
 					<!-- Comment List Start -->
 					<div class="bg-light mb-3" style="padding: 30px;">
-						<h3 class="mb-4">3 Comments</h3>
-						<div class="media mb-4">
-							<img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-								style="width: 45px;">
-							<div class="media-body">
-								<h6>
-									<a href="">John Doe</a> <small><i>01 Jan 2045</i></small>
-								</h6>
-								<p>Diam amet duo labore stet elitr invidunt ea clita ipsum
-									voluptua, tempor labore accusam ipsum et no at. Kasd diam
-									tempor rebum magna dolores sed sed eirmod ipsum. Gubergren
-									clita aliquyam consetetur sadipscing, at tempor amet ipsum diam
-									tempor consetetur at sit.</p>
-								<button class="btn btn-sm btn-outline-secondary">Reply</button>
-							</div>
-						</div>
-						<div class="media">
-							<img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-								style="width: 45px;">
-							<div class="media-body">
-								<h6>
-									<a href="">John Doe</a> <small><i>01 Jan 2045 at
-											12:00pm</i></small>
-								</h6>
-								<p>Diam amet duo labore stet elitr invidunt ea clita ipsum
-									voluptua, tempor labore accusam ipsum et no at. Kasd diam
-									tempor rebum magna dolores sed sed eirmod ipsum. Gubergren
-									clita aliquyam consetetur sadipscing, at tempor amet ipsum diam
-									tempor consetetur at sit.</p>
-								<button class="btn btn-sm btn-outline-secondary">Reply</button>
-								<div class="media mt-4">
-									<img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
-										style="width: 45px;">
-									<div class="media-body">
-										<h6>
-											<a href="">John Doe</a> <small><i>01 Jan 2045 at
-													12:00pm</i></small>
-										</h6>
-										<p>Diam amet duo labore stet elitr invidunt ea clita ipsum
-											voluptua, tempor labore accusam ipsum et no at. Kasd diam
-											tempor rebum magna dolores sed sed eirmod ipsum. Gubergren
-											clita aliquyam consetetur sadipscing, at tempor amet ipsum
-											diam tempor consetetur at sit.</p>
-										<button class="btn btn-sm btn-outline-secondary">Reply</button>
-									</div>
-								</div>
-							</div>
-						</div>
+						<h3 class="mb-4">Bình luận</h3>
+<c:forEach var="comment" items="${listComment}">
+    <div class="media mb-4">
+        <c:if test="${not empty comment.user.avatar}">
+            <img src="/avatar/${comment.user.avatar}" alt="Image"
+                class="img-fluid mr-3 mt-1 rounded-circle"
+                style="width: 45px; height: 45px;">
+        </c:if>
+        <c:if test="${empty comment.user.avatar}">
+            <img src="/avatar/noUser.png" alt="Image"
+                class="img-fluid mr-3 mt-1 rounded-circle"
+                style="width: 45px; height: 45px;">
+        </c:if>
+        <div class="media-body">
+            <h6>
+                <a href="">${comment.user.fullName}</a>
+                <small><i class="comment-datetime">${comment.commentDatetime}</i></small>
+            </h6>
+            <p>${comment.content}</p>
+        </div>
+    </div>
+</c:forEach>
+
 					</div>
 					<!-- Comment List End -->
 
 					<!-- Comment Form Start -->
-					<div class="bg-light mb-3" style="padding: 30px;">
-						<h3 class="mb-4">Bình luận</h3>
-						<form>
-							<div class="form-group">
-								<label for="message">Chi tiết *</label>
-								<textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-							</div>
-							<div class="form-group mb-0">
-								<input type="submit" value="Gửi"
-									class="btn btn-primary font-weight-semi-bold py-2 px-3">
-							</div>
-						</form>
-					</div>
+					<c:if test="${not empty pageContext.request.userPrincipal}">
+						<div class="bg-light mb-3" style="padding: 30px;">
+							<h3 class="mb-4">Bình luận</h3>
+							<form method="post" action="/comment">
+								<!-- CSRF token -->
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+								<div class="form-group" style="display: none">
+									<label for="message">NewsId</label> <input name="newsId"
+										value="${news.id}" />
+								</div>
+								<div class="form-group">
+									<label for="message">Chi tiết</label>
+									<textarea id="message" cols="30" rows="5" class="form-control"
+										name="comment"></textarea>
+								</div>
+								<div class="form-group mb-0">
+									<input type="submit" value="Gửi"
+										class="btn btn-primary font-weight-semi-bold py-2 px-3">
+								</div>
+							</form>
+						</div>
+					</c:if>
 					<!-- Comment Form End -->
 				</div>
 
@@ -258,7 +243,7 @@
 					<!-- Popular News End -->
 
 					<!-- Danh mục đề xuất -->
-<%-- 					<div class="pb-3">
+					<%-- 					<div class="pb-3">
 						<div class="bg-light py-2 px-4 mb-3">
 							<h3 class="m-0">Danh mục đề xuất</h3>
 						</div>
@@ -273,7 +258,7 @@
 					<!-- Danh mục đề xuất -->
 
 					<!-- Tất cả danh mục -->
- 					<div class="pb-3">
+					<div class="pb-3">
 						<div class="bg-light py-2 px-4 mb-3">
 							<h3 class="m-0">Tất cả danh mục</h3>
 						</div>

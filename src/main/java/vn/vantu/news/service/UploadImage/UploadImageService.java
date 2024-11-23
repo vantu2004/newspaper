@@ -1,4 +1,4 @@
-package vn.vantu.news.service;
+package vn.vantu.news.service.UploadImage;
 
 import java.io.BufferedOutputStream;
 import java.io.File;

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import vn.vantu.news.domain.User;
-import vn.vantu.news.service.UploadImageService;
 import vn.vantu.news.service.UserService;
+import vn.vantu.news.service.UploadImage.UploadImageService;
 
 @Controller
 public class ClientController {

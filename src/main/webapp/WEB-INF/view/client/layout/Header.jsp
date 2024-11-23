@@ -14,14 +14,18 @@
 
 		<!-- Search Section (5/12) -->
 		<div class="col-lg-5 d-flex justify-content-end">
-			<div class="input-group" style="width: 100%; max-width: 300px;">
-				<input type="text" class="form-control" placeholder="Keyword">
-				<div class="input-group-append">
-					<button class="input-group-text text-secondary">
+			<form method="post" action="/search"
+				style="width: 100%; max-width: 300px;">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+				<div class="input-group">
+					<input type="text" class="form-control" name="keyword"
+						placeholder="Keyword">
+					<button class="btn btn-outline-secondary" type="submit">
 						<i class="fa fa-search"></i>
 					</button>
 				</div>
-			</div>
+			</form>
 		</div>
 
 		<div

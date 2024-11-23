@@ -1,7 +1,9 @@
 package vn.vantu.news.controller.client;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import vn.vantu.news.domain.ListNews;
 import vn.vantu.news.domain.User;
+import vn.vantu.news.domain.dto.ListNews;
 import vn.vantu.news.domain.dto.RegisterDTO;
 import vn.vantu.news.service.NewsService;
-import vn.vantu.news.service.UseJsoupGetNews;
 import vn.vantu.news.service.UserService;
+import vn.vantu.news.service.Jsoup.UseJsoupGetNews;
 
 @Controller
 public class HomePageController {
@@ -35,12 +37,17 @@ public class HomePageController {
 		this.newsService = newsService;
 	}
 
+	//@Scheduled(fixedDelay = 24, timeUnit = TimeUnit.HOURS)
+	@Scheduled(fixedDelay = 10000)
+	public void loadNewsTask() {
+	    this.useJsoupGetNews.LoadNewsFromRSS();
+	}
+
 	@GetMapping("/")
 	private String getHomePage(Model model, HttpServletRequest request) {
-		//useJsoupGetNews.LoadNewsFromRSS();
+		//this.useJsoupGetNews.LoadNewsFromRSS();
 
 		ListNews listNews = newsService.getAllNews();
-
 		model.addAttribute("listNews", listNews);
 
 		return "client/homepage/HomePage";

@@ -1,9 +1,9 @@
-package vn.vantu.news.domain;
+package vn.vantu.news.domain.dto;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import vn.vantu.news.domain.News;
 
 public class ListNews {
 	List<News> tinMoi = new ArrayList<>();
