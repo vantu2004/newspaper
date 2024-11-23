@@ -20,4 +20,8 @@ public class UserCategoryService {
 	public UserCategory getUserCategory(long userId, long categoryId) {
 		return this.userCategoryRepository.findByUserIdAndCategoryId(userId, categoryId);
 	}
+	
+	public boolean checkExistUserId(long userId) {
+		return this.userCategoryRepository.existsByUserId(userId);
+	}
 }

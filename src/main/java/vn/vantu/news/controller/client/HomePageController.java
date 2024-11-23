@@ -37,8 +37,8 @@ public class HomePageController {
 		this.newsService = newsService;
 	}
 
-	//@Scheduled(fixedDelay = 24, timeUnit = TimeUnit.HOURS)
-	@Scheduled(fixedDelay = 10000)
+	@Scheduled(fixedDelay = 86400000)
+	//@Scheduled(fixedDelay = 10000)
 	public void loadNewsTask() {
 	    this.useJsoupGetNews.LoadNewsFromRSS();
 	}

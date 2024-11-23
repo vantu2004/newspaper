@@ -104,7 +104,6 @@ public class ItemController {
 
 		long newsId = id;
 		News news = this.newsService.getDetailNews(newsId);
-
 		model.addAttribute("listNews", listNews);
 		model.addAttribute("news", news);
 
@@ -124,20 +123,26 @@ public class ItemController {
 				model.addAttribute("userCategory", new UserCategory());
 			}
 
+			if (this.userCategoryService.checkExistUserId(userId)) {
+				// tạo ma trận dữ liệu thô từ table UserCategory
+				double[][] matrix = this.collaborativeFilteringService.createMatrix();
+
+				// dùng thuật toán để lấy ra các danh mục đề xuất cho người dùng
+				List<List<Integer>> recommend = this.collaborativeFilteringService.collaborativeFiltering(matrix);
+
+				// truyền vào view để lấy các bài báo và danh mục đề xuất
+				List<Integer> recommendationCategory = recommend.get((int) userId - 1);
+				List<News> recommendationNews = this.newsService.handleRecommendNewsForUser(recommend, userId);
+				model.addAttribute("recommendationCategory", recommendationCategory);
+				model.addAttribute("recommendationNews", recommendationNews);
+			} else {
+				// vừa tạo người dùng mới nên chưa có dữ liệu -> cho xuất tin tức mới
+				model.addAttribute("recommendationNews", listNews.getTinMoi());
+			}
+
 			model.addAttribute("userId", userId);
 
-			// tạo ma trận dữ liệu thô từ table UserCategory
-			double[][] matrix = this.collaborativeFilteringService.createMatrix();
-			// dùng thuật toán để lấy ra các danh mục đề xuất cho người dùng
-			List<List<Integer>> recommend = this.collaborativeFilteringService.collaborativeFiltering(matrix);
-
-			// truyền vào view để lấy các bài báo và danh mục đề xuất
-			List<Integer> recommendationCategory = recommend.get((int) userId - 1);
-			List<News> recommendationNews = this.newsService.handleRecommendNewsForUser(recommend, userId);
-			model.addAttribute("recommendationCategory", recommendationCategory);
-			model.addAttribute("recommendationNews", recommendationNews);
-			
-			//	lấy tất cả comment trong bài báo
+			// lấy tất cả comment trong bài báo
 			List<Comment> listComment = this.commentService.getAllCommentByNewsId(newsId);
 			model.addAttribute("listComment", listComment);
 		}
@@ -232,9 +237,9 @@ public class ItemController {
 		HttpSession session = request.getSession(false);
 		long userId = (long) session.getAttribute("id");
 		User user = this.userService.getInfoUserById(userId);
-		
+
 		News news = this.newsService.getDetailNews(newsId);
-		
+
 		LocalDateTime now = LocalDateTime.now();
 
 		if (comment != null && !comment.isEmpty()) {
@@ -243,11 +248,9 @@ public class ItemController {
 			cmt.setCommentDatetime(now);
 			cmt.setUser(user);
 			cmt.setNews(news);
-			
+
 			this.commentService.handleSaveComment(cmt);
 		}
-		
-		System.out.println(userId + "\n" + newsId + "\n" + comment + "\n" + now);
 
 		return "redirect:/detail-news/" + newsId;
 	}

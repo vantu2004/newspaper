@@ -16,4 +16,6 @@ public interface UserCategoryRepository extends JpaRepository<UserCategory, Long
 
 	@Query(value = "SELECT category_id, user_id, interaction_score FROM user_category", nativeQuery = true)
 	List<Object[]> findAllUserCategoryData();
+	
+	boolean existsByUserId(long userId);
 }
