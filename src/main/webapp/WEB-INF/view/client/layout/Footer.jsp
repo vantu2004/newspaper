@@ -6,7 +6,7 @@
 		<!-- Thêm class justify-content-center để căn giữa -->
 		<div class="col-lg-6 col-md-6 text-center">
 			<!-- Thêm class text-center để căn giữa nội dung -->
-			<a href="index.html" class="navbar-brand">
+			<a href="/" class="navbar-brand">
 				<h1 class="mb-2 mt-n2 display-5 text-uppercase"
 					style="font-size: 1.5rem;">
 					<!-- Giảm cỡ chữ tại đây -->

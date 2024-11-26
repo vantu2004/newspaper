@@ -94,6 +94,8 @@
 								</p>
 								<c:out value="${news.content}" escapeXml="false" />
 								<p>${news.author}</p>
+								
+								<p>Nguồn: <a href="${news.link}">VnExpress</a></p>
 							</div>
 
 							<!-- Đánh giá chủ đề bài viết -->

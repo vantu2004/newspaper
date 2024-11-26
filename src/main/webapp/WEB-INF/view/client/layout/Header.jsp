@@ -3,30 +3,28 @@
 <!-- Topbar Start -->
 <div class="container-fluid mt-3 mb-3">
 	<div class="row align-items-center py-2 px-lg-5">
-		<!-- Logo Section (5/12) -->
-		<div class="col-lg-5">
-			<a href="/" class="navbar-brand d-none d-lg-block">
-				<h1 class="m-0 display-5 text-uppercase">
-					<span class="text-primary">News</span>Room
-				</h1>
-			</a>
-		</div>
+<!-- Logo Section (5/12) -->
+<div class="col-12 col-lg-5 text-center text-lg-left">
+    <a href="/" class="navbar-brand d-block">
+        <h1 class="m-0 display-5 text-uppercase">
+            <span class="text-primary">News</span>Room
+        </h1>
+    </a>
+</div>
 
-		<!-- Search Section (5/12) -->
-		<div class="col-lg-5 d-flex justify-content-end">
-			<form method="post" action="/search"
-				style="width: 100%; max-width: 300px;">
-				<input type="hidden" name="${_csrf.parameterName}"
-					value="${_csrf.token}" />
-				<div class="input-group">
-					<input type="text" class="form-control" name="keyword"
-						placeholder="Keyword">
-					<button class="btn btn-outline-secondary" type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-				</div>
-			</form>
-		</div>
+<!-- Search Section (5/12) -->
+<div class="col-12 col-lg-5 d-flex justify-content-end">
+    <form method="post" action="/search" style="width: 100%; max-width: 300px;">
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+        <div class="input-group">
+            <input type="text" class="form-control" name="keyword" placeholder="Keyword">
+            <button class="btn btn-outline-secondary" type="submit">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
 
 		<div
 			class="col-lg-2 d-flex align-items-center justify-content-between">
@@ -142,25 +140,44 @@
 
 <!-- Navbar Start -->
 <div class="container-fluid p-0 mb-3">
-	<nav
-		class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5">
-		<div
-			class="collapse navbar-collapse justify-content-between px-0 px-lg-3"
-			id="navbarCollapse">
-			<div class="navbar-nav mr-auto py-0">
-				<a href="/" class="nav-item nav-link active"><i
-					class="fas fa-home"></i></a> <a href="/listNews/2"
-					class="nav-item nav-link">Thời sự</a> <a href="/listNews/1"
-					class="nav-item nav-link">Thế giới</a> <a href="/listNews/3"
-					class="nav-item nav-link">Kinh doanh</a> <a href="/listNews/6"
-					class="nav-item nav-link">Giải trí</a> <a href="/listNews/5"
-					class="nav-item nav-link">Thể thao</a> <a href="/listNews/8"
-					class="nav-item nav-link">Giáo dục</a>
-				<c:if test="${not empty pageContext.request.userPrincipal}">
-					<a href="/follow" class="nav-item nav-link">Theo dõi</a>
-				</c:if>
-			</div>
-		</div>
-	</nav>
+    <nav class="navbar navbar-expand-lg bg-light navbar-light py-2 py-lg-0 px-lg-5">
+        <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav mr-auto py-0">
+                <a href="/" class="nav-item nav-link" onclick="setActive(this)"> <i class="fas fa-home"></i> </a>
+                <a href="/listNews/2" class="nav-item nav-link" onclick="setActive(this)"> Thời sự </a>
+                <a href="/listNews/1" class="nav-item nav-link" onclick="setActive(this)"> Thế giới </a>
+                <a href="/listNews/3" class="nav-item nav-link" onclick="setActive(this)"> Kinh doanh </a>
+                <a href="/listNews/6" class="nav-item nav-link" onclick="setActive(this)"> Giải trí </a>
+                <a href="/listNews/5" class="nav-item nav-link" onclick="setActive(this)"> Thể thao </a>
+                <a href="/listNews/8" class="nav-item nav-link" onclick="setActive(this)"> Giáo dục </a>
+                <c:if test="${not empty pageContext.request.userPrincipal}">
+                    <a href="/follow" class="nav-item nav-link" onclick="setActive(this)"> Theo dõi </a>
+                </c:if>
+            </div>
+        </div>
+    </nav>
 </div>
 <!-- Navbar End -->
+
+<script>
+    // Hàm để thêm lớp "active" vào thẻ <a> khi được nhấn
+    function setActive(element) {
+        // Xóa lớp active khỏi tất cả các thẻ <a>
+        let navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // Thêm lớp active cho thẻ <a> được nhấn
+        element.classList.add('active');
+    }
+
+    // Đảm bảo rằng khi trang được tải lại, thẻ tương ứng với URL hiện tại sẽ có lớp "active"
+    window.onload = function() {
+        let currentUrl = window.location.pathname;
+        let navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentUrl) {
+                link.classList.add('active');
+            }
+        });
+    };
+</script>

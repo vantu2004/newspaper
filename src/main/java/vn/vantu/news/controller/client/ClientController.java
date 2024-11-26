@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import vn.vantu.news.domain.User;
 import vn.vantu.news.service.UserService;
 import vn.vantu.news.service.UploadImage.UploadImageService;
@@ -37,7 +39,7 @@ public class ClientController {
 
 	@PostMapping("/client/user/update")
 	public String postUpdateUser(Model model, @ModelAttribute("newUser") User user,
-			@RequestParam("imageFile") MultipartFile file) throws IOException {
+			@RequestParam("imageFile") MultipartFile file, HttpServletRequest request) throws IOException {
 		User currentUser = this.userservice.getInfoUserById(user.getId());
 
 		// Đảm bảo file ko null để avatar hoặc là có trị hoặc là ko, giúp đảm bảo việc
@@ -45,6 +47,9 @@ public class ClientController {
 		String avatar = null;
 		if (file != null && !file.isEmpty()) {
 			avatar = this.uploadImageService.handleSaveUploadFile(file, "avatar");
+			
+			HttpSession session = request.getSession(false);
+			session.setAttribute("avatar", avatar);
 		}
 
 		if (currentUser != null) {

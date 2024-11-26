@@ -1,7 +1,6 @@
 package vn.vantu.news.controller.client;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -222,14 +221,24 @@ public class ItemController {
 	@PostMapping("/search")
 	public String searchNews(Model model, @RequestParam("keyword") String keyword) {
 
-		ListNews listNews = this.newsService.getAllNews();
-		model.addAttribute("listNews", listNews);
+	    ListNews listNews = this.newsService.getAllNews();
+	    model.addAttribute("listNews", listNews);
 
-		List<News> news = this.newsService.getAllNewsByKeyword(keyword);
-		model.addAttribute("news", news);
+	    List<News> news;
+	    if (keyword == null || keyword.trim().isEmpty()) {
+	        // Lấy danh sách tất cả tin tức và giới hạn 50 phần tử
+	        List<News> allNews = this.newsService.getAllNewsByKeyword(keyword);
+	        int limit = Math.min(50, allNews.size()); // Đảm bảo không vượt quá kích thước danh sách
+	        news = allNews.subList(0, limit);
+	    } else {
+	        // Tìm kiếm tin tức theo từ khóa
+	        news = this.newsService.getAllNewsByKeyword(keyword);
+	    }
+	    model.addAttribute("news", news);
 
-		return "client/news/SearchNews";
+	    return "client/news/SearchNews";
 	}
+
 
 	@PostMapping("/comment")
 	public String createComment(Model model, HttpServletRequest request, @RequestParam("newsId") long newsId,
